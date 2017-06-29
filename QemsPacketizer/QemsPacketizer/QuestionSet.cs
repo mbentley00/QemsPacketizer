@@ -107,10 +107,12 @@
 
             // Religion/Myth - 2
             catList.Add(new Category(NasatCategory.RMP, 3, 3, 3, 3, 6, 6)); // TODO: This may not be right
-            catList.Add(new Category(NasatCategory.GrecoRomanMyth, 0, 1, 0, 1, 0, 2, NasatCategory.RMP));
-            catList.Add(new Category(NasatCategory.OtherMyth, 0, 1, 0, 1, 0, 2, NasatCategory.RMP));
-            catList.Add(new Category(NasatCategory.Christianity, 0, 1, 0, 1, 0, 2, NasatCategory.RMP));
-            catList.Add(new Category(NasatCategory.OtherReligion, 0, 1, 0, 1, 0, 2, NasatCategory.RMP));
+            catList.Add(new Category(NasatCategory.GrecoRomanMyth, 0, 1, 0, 1, 0, 2, NasatCategory.Myth, NasatCategory.RMP));
+            catList.Add(new Category(NasatCategory.OtherMyth, 0, 1, 0, 1, 0, 2, NasatCategory.Myth, NasatCategory.RMP));
+            catList.Add(new Category(NasatCategory.Myth, 0, 1, 0, 1, 0, 2, NasatCategory.RMP));
+            catList.Add(new Category(NasatCategory.Christianity, 0, 1, 0, 1, 0, 2, NasatCategory.Religion, NasatCategory.RMP));
+            catList.Add(new Category(NasatCategory.OtherReligion, 0, 1, 0, 1, 0, 2, NasatCategory.Religion, NasatCategory.RMP));
+            catList.Add(new Category(NasatCategory.Religion, 0, 1, 0, 1, 0, 2, NasatCategory.RMP));
 
             // Phil/SS/GK - 2
             catList.Add(new Category(NasatCategory.Philosophy, 0, 1, 0, 1, 1, 2, NasatCategory.RMP));
@@ -140,93 +142,137 @@
             }
 
             this.UnassignedTossups = new List<Question>();
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.AmericanLiterature, 28, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.AmericanLiterature, 29, Question.QuestionType.Tossup));
             this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.BritishLiterature, 29, Question.QuestionType.Tossup));
             this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.EuropeanLiterature, 20, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.WorldLiterature, 7, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.AmericanHistory, 31, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.EuropeanHistory, 42, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.WorldHistory, 13, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Biology, 22, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Chemistry, 11, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Physics, 21, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Math, 11, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.ComputerScience, 3, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.EarthScience, 7, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Astronomy, 7, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.HistoryOfScience, 3, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Christianity, 5, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.OtherReligion, 5, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.GrecoRomanMyth, 10, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.OtherMyth, 10, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Philosophy, 20, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Painting, 21, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Music, 21, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Photography, 2, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.WorldLiterature, 8, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.AmericanHistory, 30, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.EuropeanHistory, 45, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.WorldHistory, 14, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Biology, 21, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Chemistry, 13, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Physics, 20, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Math, 19, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.ComputerScience, 2, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.EarthScience, 4, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Astronomy, 4, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.HistoryOfScience, 2, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Christianity, 12, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.OtherReligion, 11, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.GrecoRomanMyth, 12, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.OtherMyth, 12, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Philosophy, 13, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Painting, 20, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Music, 20, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Photography, 1, Question.QuestionType.Tossup));
             this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Sculpture, 2, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Opera, 5, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Opera, 4, Question.QuestionType.Tossup));
             this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Ballet, 2, Question.QuestionType.Tossup));
             this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Jazz, 2, Question.QuestionType.Tossup));
             this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.MiscArts, 1, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Film, 4, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Architecture, 4, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Film, 5, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Architecture, 3, Question.QuestionType.Tossup));
             this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Psychology, 6, Question.QuestionType.Tossup));
             this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Economics, 6, Question.QuestionType.Tossup));
             this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Anthropology, 2, Question.QuestionType.Tossup));
             this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Sociology, 2, Question.QuestionType.Tossup));
             this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.Linguistics, 2, Question.QuestionType.Tossup));
             this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.OtherSS, 2, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.USGeography, 4, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.USGeography, 3, Question.QuestionType.Tossup));
             this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.EuropeanGeography, 2, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.WorldGeography, 15, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.USCurrentEvents, 5, Question.QuestionType.Tossup));
-            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.ForeignCurrentEvents, 5, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.WorldGeography, 8, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.USCurrentEvents, 4, Question.QuestionType.Tossup));
+            this.UnassignedTossups.AddRange(this.GetQuestions(NasatCategory.ForeignCurrentEvents, 3, Question.QuestionType.Tossup));
 
             Console.WriteLine(this.UnassignedTossups.Count);
             Console.WriteLine();
 
             this.UnassignedBonuses = new List<Question>();
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.AmericanLiterature, 28, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.AmericanLiterature, 29, Question.QuestionType.Bonus));
             this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.BritishLiterature, 29, Question.QuestionType.Bonus));
             this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.EuropeanLiterature, 20, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.WorldLiterature, 7, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.AmericanHistory, 31, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.EuropeanHistory, 42, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.WorldHistory, 13, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Biology, 22, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Chemistry, 11, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Physics, 21, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Math, 11, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.ComputerScience, 3, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.EarthScience, 7, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Astronomy, 7, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.HistoryOfScience, 3, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Christianity, 5, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.OtherReligion, 5, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.GrecoRomanMyth, 10, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.OtherMyth, 10, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Philosophy, 20, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Painting, 21, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Music, 21, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Photography, 2, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.WorldLiterature, 8, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.AmericanHistory, 30, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.EuropeanHistory, 45, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.WorldHistory, 14, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Biology, 21, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Chemistry, 13, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Physics, 20, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Math, 19, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.ComputerScience, 2, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.EarthScience, 4, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Astronomy, 4, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.HistoryOfScience, 2, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Christianity, 12, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.OtherReligion, 11, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.GrecoRomanMyth, 12, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.OtherMyth, 12, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Philosophy, 13, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Painting, 20, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Music, 20, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Photography, 1, Question.QuestionType.Bonus));
             this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Sculpture, 2, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Opera, 5, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Opera, 4, Question.QuestionType.Bonus));
             this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Ballet, 2, Question.QuestionType.Bonus));
             this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Jazz, 2, Question.QuestionType.Bonus));
             this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.MiscArts, 1, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Film, 4, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Architecture, 4, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Film, 5, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Architecture, 3, Question.QuestionType.Bonus));
             this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Psychology, 6, Question.QuestionType.Bonus));
             this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Economics, 6, Question.QuestionType.Bonus));
             this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Anthropology, 2, Question.QuestionType.Bonus));
             this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Sociology, 2, Question.QuestionType.Bonus));
             this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Linguistics, 2, Question.QuestionType.Bonus));
             this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.OtherSS, 2, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.USGeography, 4, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.USGeography, 3, Question.QuestionType.Bonus));
             this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.EuropeanGeography, 2, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.WorldGeography, 15, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.USCurrentEvents, 5, Question.QuestionType.Bonus));
-            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.ForeignCurrentEvents, 5, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.WorldGeography, 8, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.USCurrentEvents, 4, Question.QuestionType.Bonus));
+            this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.ForeignCurrentEvents, 3, Question.QuestionType.Bonus));
+
+
+
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.AmericanLiterature, 28, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.BritishLiterature, 29, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.EuropeanLiterature, 20, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.WorldLiterature, 7, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.AmericanHistory, 31, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.EuropeanHistory, 42, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.WorldHistory, 13, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Biology, 22, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Chemistry, 11, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Physics, 21, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Math, 11, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.ComputerScience, 3, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.EarthScience, 7, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Astronomy, 7, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.HistoryOfScience, 3, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Christianity, 12, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.OtherReligion, 11, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.GrecoRomanMyth, 12, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.OtherMyth, 10, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Philosophy, 13, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Painting, 21, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Music, 21, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Photography, 2, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Sculpture, 2, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Opera, 5, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Ballet, 2, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Jazz, 2, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.MiscArts, 1, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Film, 4, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Architecture, 4, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Psychology, 6, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Economics, 6, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Anthropology, 2, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Sociology, 2, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.Linguistics, 2, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.OtherSS, 2, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.USGeography, 4, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.EuropeanGeography, 2, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.WorldGeography, 15, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.USCurrentEvents, 5, Question.QuestionType.Bonus));
+            //this.UnassignedBonuses.AddRange(this.GetQuestions(NasatCategory.ForeignCurrentEvents, 5, Question.QuestionType.Bonus));
         }
 
         public void LoadTotalQuestionCounts(string file)
@@ -762,98 +808,105 @@
                 List<Question> bonuses = new List<Question>();
 
                 // Find 1 am lit
-                tossups.Add(GetUnassignedTossup(new string[] { NasatCategory.AmericanLiterature }, new string[] { NasatCategory.EuropeanLiterature, NasatCategory.BritishLiterature, NasatCategory.WorldLiterature }));
-                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.AmericanLiterature }, new string[] { NasatCategory.EuropeanLiterature, NasatCategory.BritishLiterature, NasatCategory.WorldLiterature }));
+                tossups.Add(GetUnassignedTossup(new string[] { NasatCategory.AmericanLiterature }, new string[] { NasatCategory.EuropeanLiterature, NasatCategory.BritishLiterature, NasatCategory.WorldLiterature }, packetToMatch: packet.QemsPacketName));
+                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.AmericanLiterature }, new string[] { NasatCategory.EuropeanLiterature, NasatCategory.BritishLiterature, NasatCategory.WorldLiterature }, packetToMatch: packet.QemsPacketName));
 
                 // Find 1 brit lit
-                tossups.Add(GetUnassignedTossup(new string[] { NasatCategory.BritishLiterature }, new string[] { NasatCategory.EuropeanLiterature, NasatCategory.AmericanLiterature, NasatCategory.WorldLiterature }));
-                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.BritishLiterature }, new string[] { NasatCategory.EuropeanLiterature, NasatCategory.AmericanLiterature, NasatCategory.WorldLiterature }));
+                tossups.Add(GetUnassignedTossup(new string[] { NasatCategory.BritishLiterature }, new string[] { NasatCategory.EuropeanLiterature, NasatCategory.AmericanLiterature, NasatCategory.WorldLiterature }, packetToMatch: packet.QemsPacketName));
+                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.BritishLiterature }, new string[] { NasatCategory.EuropeanLiterature, NasatCategory.AmericanLiterature, NasatCategory.WorldLiterature }, packetToMatch: packet.QemsPacketName));
 
                 // Find 1 eur or world lit
                 string[] eurWorldLitCats = new string[] { NasatCategory.EuropeanLiterature, NasatCategory.WorldLiterature };
-                tossups.Add(GetUnassignedTossup(eurWorldLitCats, new string[] { NasatCategory.AmericanLiterature, NasatCategory.BritishLiterature }));
-                bonuses.Add(GetUnassignedBonus(eurWorldLitCats, new string[] { NasatCategory.AmericanLiterature, NasatCategory.BritishLiterature }));
+                tossups.Add(GetUnassignedTossup(eurWorldLitCats, new string[] { NasatCategory.AmericanLiterature, NasatCategory.BritishLiterature }, packetToMatch: packet.QemsPacketName));
+                bonuses.Add(GetUnassignedBonus(eurWorldLitCats, new string[] { NasatCategory.AmericanLiterature, NasatCategory.BritishLiterature }, packetToMatch: packet.QemsPacketName));
 
                 // Find 1 of any lit
-                tossups.Add(GetUnassignedTossup(NasatCategory.Literature));
-                bonuses.Add(GetUnassignedBonus(NasatCategory.Literature));
+                tossups.Add(GetUnassignedTossup(NasatCategory.Literature, packetToMatch: packet.QemsPacketName));
+                bonuses.Add(GetUnassignedBonus(NasatCategory.Literature, packetToMatch: packet.QemsPacketName));
 
                 // Find 1 am hist
-                tossups.Add(GetUnassignedTossup(new string[] { NasatCategory.AmericanHistory }, new string[] { NasatCategory.EuropeanHistory, NasatCategory.WorldHistory }));
-                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.AmericanHistory }, new string[] { NasatCategory.EuropeanHistory, NasatCategory.WorldHistory }));
+                tossups.Add(GetUnassignedTossup(new string[] { NasatCategory.AmericanHistory }, new string[] { NasatCategory.EuropeanHistory, NasatCategory.WorldHistory }, packetToMatch: packet.QemsPacketName));
+                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.AmericanHistory }, new string[] { NasatCategory.EuropeanHistory, NasatCategory.WorldHistory }, packetToMatch: packet.QemsPacketName));
 
                 // Find 2 eur hist
-                tossups.Add(GetUnassignedTossup(NasatCategory.EuropeanHistory));
-                bonuses.Add(GetUnassignedBonus(NasatCategory.EuropeanHistory));
-                tossups.Add(GetUnassignedTossup(NasatCategory.EuropeanHistory));
-                bonuses.Add(GetUnassignedBonus(NasatCategory.EuropeanHistory));
+                tossups.Add(GetUnassignedTossup(NasatCategory.EuropeanHistory, packetToMatch: packet.QemsPacketName));
+                bonuses.Add(GetUnassignedBonus(NasatCategory.EuropeanHistory, packetToMatch: packet.QemsPacketName));
+                tossups.Add(GetUnassignedTossup(NasatCategory.EuropeanHistory, packetToMatch: packet.QemsPacketName));
+                bonuses.Add(GetUnassignedBonus(NasatCategory.EuropeanHistory, packetToMatch: packet.QemsPacketName));
 
                 // Find 1 world hist or am history
                 string[] histCats = new string[] { NasatCategory.AmericanHistory, NasatCategory.EuropeanHistory, NasatCategory.WorldHistory };
                 List<string> excludeHistCats = new List<string> { NasatCategory.EuropeanHistory };
-                Question otherHistTossup = this.GetUnassignedTossup(histCats, excludeHistCats.ToArray());
+                Question otherHistTossup = this.GetUnassignedTossup(histCats, excludeHistCats.ToArray(), packetToMatch: packet.QemsPacketName);
                 tossups.Add(otherHistTossup);
                 excludeHistCats.Add(otherHistTossup.Category.Name);
-                bonuses.Add(this.GetUnassignedBonus(histCats, excludeHistCats.ToArray()));
+                bonuses.Add(this.GetUnassignedBonus(histCats, excludeHistCats.ToArray(), packetToMatch: packet.QemsPacketName));
 
                 // Find 1 bio
-                tossups.Add(GetUnassignedTossup(NasatCategory.Biology));
-                bonuses.Add(GetUnassignedBonus(NasatCategory.Biology));
+                tossups.Add(GetUnassignedTossup(NasatCategory.Biology, packetToMatch: packet.QemsPacketName));
+                bonuses.Add(GetUnassignedBonus(NasatCategory.Biology, packetToMatch: packet.QemsPacketName));
 
                 // Find 1 physics
-                tossups.Add(GetUnassignedTossup(NasatCategory.Physics));
-                bonuses.Add(GetUnassignedBonus(NasatCategory.Physics));
+                tossups.Add(GetUnassignedTossup(NasatCategory.Physics, packetToMatch: packet.QemsPacketName));
+                bonuses.Add(GetUnassignedBonus(NasatCategory.Physics, packetToMatch: packet.QemsPacketName));
 
                 // Find 1 math/chem                
-                Question mathChemTossup = this.GetUnassignedTossup(new string[] { NasatCategory.Math, NasatCategory.Chemistry });
+                Question mathChemTossup = this.GetUnassignedTossup(new string[] { NasatCategory.Math, NasatCategory.Chemistry }, packetToMatch: packet.QemsPacketName);
                 tossups.Add(mathChemTossup);
-                bonuses.Add(this.GetUnassignedBonus(new string[] { NasatCategory.Math, NasatCategory.Chemistry }, new string[] { mathChemTossup.Category.Name }));
+                bonuses.Add(this.GetUnassignedBonus(new string[] { NasatCategory.Math, NasatCategory.Chemistry }, new string[] { mathChemTossup.Category.Name }, packetToMatch: packet.QemsPacketName));
 
                 // Find 1 other sci
                 string[] otherSci = new string[] { NasatCategory.HistoryOfScience, NasatCategory.ComputerScience, NasatCategory.Astronomy, NasatCategory.EarthScience };
-                Question otherSciTossup = this.GetUnassignedTossup(otherSci);
+                Question otherSciTossup = this.GetUnassignedTossup(otherSci, packetToMatch: packet.QemsPacketName);
                 tossups.Add(otherSciTossup);
-                bonuses.Add(this.GetUnassignedBonus(otherSci, new string[] { otherSciTossup.Category.Name }));
+                bonuses.Add(this.GetUnassignedBonus(otherSci, new string[] { otherSciTossup.Category.Name }, packetToMatch: packet.QemsPacketName));
 
                 // Pick 1 painting
-                tossups.Add(GetUnassignedTossup(new string[] { NasatCategory.Painting }));
-                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.Painting }));
+                tossups.Add(GetUnassignedTossup(new string[] { NasatCategory.Painting }, packetToMatch: packet.QemsPacketName));
+                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.Painting }, packetToMatch: packet.QemsPacketName));
 
                 // Pick 1 music
-                tossups.Add(GetUnassignedTossup(new string[] { NasatCategory.Music }));
-                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.Music }));
+                tossups.Add(GetUnassignedTossup(new string[] { NasatCategory.Music }, packetToMatch: packet.QemsPacketName));
+                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.Music }, packetToMatch: packet.QemsPacketName));
 
                 // Pick 1/1 other arts
                 string[] miscArtsCats = new string[] { NasatCategory.MiscArts, NasatCategory.Sculpture, NasatCategory.Architecture, NasatCategory.Photography,
                     NasatCategory.Film, NasatCategory.Opera, NasatCategory.Jazz, NasatCategory.Ballet};
-                Question miscArtsTossup = GetUnassignedTossup(miscArtsCats);
+                Question miscArtsTossup = GetUnassignedTossup(miscArtsCats, packetToMatch: packet.QemsPacketName);
                 tossups.Add(miscArtsTossup);
-                bonuses.Add(GetUnassignedBonus(miscArtsCats, new string[] { miscArtsTossup.Category.ParentCategoryName }));
+                bonuses.Add(GetUnassignedBonus(miscArtsCats, new string[] { miscArtsTossup.Category.ParentCategoryName }, packetToMatch: packet.QemsPacketName));
 
 
-                // Find a total of 3/3 RMP + CE
-                // Always pick 1 philosophy
-                tossups.Add(GetUnassignedTossup(new string[] { NasatCategory.Philosophy }));
-                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.Philosophy }));
+                // Find a total of 3/3 RMP
 
                 // Always pick 1 myth
-                Question mythTossup = GetUnassignedTossup(new string[] { NasatCategory.OtherMyth, NasatCategory.GrecoRomanMyth });
+                Question mythTossup = GetUnassignedTossup(new string[] { NasatCategory.OtherMyth, NasatCategory.GrecoRomanMyth }, packetToMatch: packet.QemsPacketName);
                 tossups.Add(mythTossup);
-                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.OtherMyth, NasatCategory.GrecoRomanMyth }, new string[] { mythTossup.Category.Name }));
+                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.OtherMyth, NasatCategory.GrecoRomanMyth }, new string[] { mythTossup.Category.Name }, packetToMatch: packet.QemsPacketName));
 
-                // Pick 1/1 from religion and CE
-                Question religionCETossup = GetUnassignedTossup(new string[] { NasatCategory.Christianity, NasatCategory.OtherReligion, NasatCategory.CurrentEvents });
-                tossups.Add(religionCETossup);
-                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.Christianity, NasatCategory.OtherReligion, NasatCategory.CurrentEvents }, new string[] { religionCETossup.Category.ParentCategoryName }));
+                // Alawys pick 1 religion
+                Question religionTossup = GetUnassignedTossup(new string[] { NasatCategory.Christianity, NasatCategory.OtherReligion }, packetToMatch: packet.QemsPacketName);
+                tossups.Add(religionTossup);
+                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.Christianity, NasatCategory.OtherReligion }, new string[] { religionTossup.Category.Name }, packetToMatch: packet.QemsPacketName));
 
-                // Pick 1/1 Geo
-                tossups.Add(GetUnassignedTossup(NasatCategory.Geography));
-                bonuses.Add(GetUnassignedBonus(NasatCategory.Geography));
+                // Choose from philosophy and the remaining religion
+                Question otherRmpTossup = GetUnassignedTossup(new string[] { NasatCategory.Myth, NasatCategory.Religion, NasatCategory.Philosophy });
+                tossups.Add(otherRmpTossup);
+
+                //Question otherRmpBonus = GetUnassignedTossup(new string[] { NasatCategory.Myth, NasatCategory.Religion, NasatCategory.Philosophy });
+                //bonuses.Add(otherRmpBonus);
+
+                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.Myth, NasatCategory.Religion, NasatCategory.Philosophy }, new string[] { otherRmpTossup.Category.ParentCategoryName }, packetToMatch: packet.QemsPacketName));
+
+                // Pick 1/1 Geo or CE
+                Question geoOrCeTossup = GetUnassignedTossup(new string[] { NasatCategory.Geography, NasatCategory.CurrentEvents }, packetToMatch: packet.QemsPacketName);
+                tossups.Add(geoOrCeTossup);
+                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.Geography, NasatCategory.CurrentEvents }, new string[] { geoOrCeTossup.Category.ParentCategoryName }, packetToMatch: packet.QemsPacketName));
 
                 // Pick 1/1 SS
-                Question ssTossup = GetUnassignedTossup(new string[] { NasatCategory.SocialScience });
+                Question ssTossup = GetUnassignedTossup(new string[] { NasatCategory.SocialScience }, packetToMatch: packet.QemsPacketName);
                 tossups.Add(ssTossup);
-                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.SocialScience }, new string[] { ssTossup.Category.Name }));
+                bonuses.Add(GetUnassignedBonus(new string[] { NasatCategory.SocialScience }, new string[] { ssTossup.Category.Name }, packetToMatch: packet.QemsPacketName));
 
                 packet.Tossups = tossups;
                 packet.Bonuses = bonuses;
@@ -2210,10 +2263,61 @@
                         this.ExtraBonuses.Add(placeHolder);
                     }
 
-                    writer.Write(string.Join(",", this.ExtraTossups));
-                    writer.Write(",");
-                    writer.Write(string.Join(",", this.ExtraBonuses));
-                    writer.WriteLine();
+                    // Split the extra tossups and bonuses into separate packets if needed
+                    var tossupBatches = this.ExtraTossups.Batch(tossupCount);
+                    var bonusBatches = this.ExtraBonuses.Batch(bonusCount);
+                    List<IEnumerable<Question>> tossupBatchList = new List<IEnumerable<Question>>();
+                    List<IEnumerable<Question>> bonusBatchList = new List<IEnumerable<Question>>();
+
+                    foreach (var batch in tossupBatches)
+                    {
+                        tossupBatchList.Add(batch);
+                    }
+
+                    foreach (var batch in bonusBatches)
+                    {
+                        bonusBatchList.Add(batch);
+                    }
+
+                    for (int i = 0; i < Math.Max(tossupBatchList.Count, bonusBatchList.Count); i++)
+                    {
+                        List<string> tossupsToWrite = new List<string>();
+                        for (int j = 0; j < tossupCount; j++)
+                        {
+                            tossupsToWrite.Add(string.Empty);
+                        }
+
+                        List<string> bonusesToWrite = new List<string>();
+                        for (int j = 0; j < bonusCount; j++)
+                        {
+                            bonusesToWrite.Add(string.Empty);
+                        }
+
+                        int index = 0;
+                        if (i < tossupBatchList.Count)
+                        {
+                            foreach (var tossup in tossupBatchList[i])
+                            {
+                                tossupsToWrite[index] = tossup.ToString();
+                                index++;
+                            }
+                        }
+
+                        index = 0;
+                        if (i < bonusBatchList.Count)
+                        {
+                            foreach (var bonus in bonusBatchList[i])
+                            {
+                                bonusesToWrite[index] = bonus.ToString();
+                                index++;
+                            }
+                        }
+
+                        writer.Write(string.Join(",", tossupsToWrite));
+                        writer.Write(",");
+                        writer.Write(string.Join(",", bonusesToWrite));
+                        writer.WriteLine();
+                    }
                 }
             }
 

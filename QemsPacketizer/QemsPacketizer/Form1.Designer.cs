@@ -67,11 +67,13 @@
             this.txtPreviousOutputFile = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.chkRespectPacket = new System.Windows.Forms.CheckBox();
+            this.cmdQuestionLength = new System.Windows.Forms.Button();
+            this.lblLength = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cmdGeneratePackets
             // 
-            this.cmdGeneratePackets.Location = new System.Drawing.Point(141, 472);
+            this.cmdGeneratePackets.Location = new System.Drawing.Point(136, 449);
             this.cmdGeneratePackets.Name = "cmdGeneratePackets";
             this.cmdGeneratePackets.Size = new System.Drawing.Size(120, 30);
             this.cmdGeneratePackets.TabIndex = 4;
@@ -157,7 +159,7 @@
             // cmdGenerateTemplates
             // 
             this.cmdGenerateTemplates.Enabled = false;
-            this.cmdGenerateTemplates.Location = new System.Drawing.Point(15, 472);
+            this.cmdGenerateTemplates.Location = new System.Drawing.Point(10, 449);
             this.cmdGenerateTemplates.Name = "cmdGenerateTemplates";
             this.cmdGenerateTemplates.Size = new System.Drawing.Size(120, 30);
             this.cmdGenerateTemplates.TabIndex = 14;
@@ -169,7 +171,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 512);
+            this.label4.Location = new System.Drawing.Point(7, 489);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(111, 13);
             this.label4.TabIndex = 15;
@@ -179,7 +181,7 @@
             // txtTemplates
             // 
             this.txtTemplates.Enabled = false;
-            this.txtTemplates.Location = new System.Drawing.Point(122, 509);
+            this.txtTemplates.Location = new System.Drawing.Point(117, 486);
             this.txtTemplates.Name = "txtTemplates";
             this.txtTemplates.Size = new System.Drawing.Size(38, 20);
             this.txtTemplates.TabIndex = 16;
@@ -345,7 +347,7 @@
             // lblPackets
             // 
             this.lblPackets.AutoSize = true;
-            this.lblPackets.Location = new System.Drawing.Point(166, 512);
+            this.lblPackets.Location = new System.Drawing.Point(161, 489);
             this.lblPackets.Name = "lblPackets";
             this.lblPackets.Size = new System.Drawing.Size(101, 13);
             this.lblPackets.TabIndex = 32;
@@ -354,7 +356,7 @@
             // 
             // txtPackets
             // 
-            this.txtPackets.Location = new System.Drawing.Point(277, 509);
+            this.txtPackets.Location = new System.Drawing.Point(272, 486);
             this.txtPackets.Name = "txtPackets";
             this.txtPackets.Size = new System.Drawing.Size(38, 20);
             this.txtPackets.TabIndex = 33;
@@ -410,7 +412,7 @@
             // 
             // cmdAdvancedMode
             // 
-            this.cmdAdvancedMode.Location = new System.Drawing.Point(348, 472);
+            this.cmdAdvancedMode.Location = new System.Drawing.Point(343, 449);
             this.cmdAdvancedMode.Name = "cmdAdvancedMode";
             this.cmdAdvancedMode.Size = new System.Drawing.Size(120, 30);
             this.cmdAdvancedMode.TabIndex = 40;
@@ -449,11 +451,34 @@
             this.chkRespectPacket.Text = "Try To Respect QEMS Packet";
             this.chkRespectPacket.UseVisualStyleBackColor = true;
             // 
+            // cmdQuestionLength
+            // 
+            this.cmdQuestionLength.Location = new System.Drawing.Point(10, 520);
+            this.cmdQuestionLength.Name = "cmdQuestionLength";
+            this.cmdQuestionLength.Size = new System.Drawing.Size(120, 30);
+            this.cmdQuestionLength.TabIndex = 44;
+            this.cmdQuestionLength.Text = "Get Question Length";
+            this.cmdQuestionLength.UseVisualStyleBackColor = true;
+            this.cmdQuestionLength.Visible = false;
+            this.cmdQuestionLength.Click += new System.EventHandler(this.cmdQuestionLength_Click);
+            // 
+            // lblLength
+            // 
+            this.lblLength.AutoSize = true;
+            this.lblLength.Location = new System.Drawing.Point(149, 526);
+            this.lblLength.Name = "lblLength";
+            this.lblLength.Size = new System.Drawing.Size(43, 13);
+            this.lblLength.TabIndex = 45;
+            this.lblLength.Text = "Length:";
+            this.lblLength.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(478, 552);
+            this.ClientSize = new System.Drawing.Size(478, 562);
+            this.Controls.Add(this.lblLength);
+            this.Controls.Add(this.cmdQuestionLength);
             this.Controls.Add(this.chkRespectPacket);
             this.Controls.Add(this.txtPreviousOutputFile);
             this.Controls.Add(this.label5);
@@ -543,6 +568,8 @@
         private System.Windows.Forms.TextBox txtPreviousOutputFile;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox chkRespectPacket;
+        private System.Windows.Forms.Button cmdQuestionLength;
+        private System.Windows.Forms.Label lblLength;
     }
 }
 

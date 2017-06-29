@@ -62,24 +62,20 @@
             bool isInAnswer = false;
             bool isInPrompt = false;
             bool isInItalics = false;
+            bool isInSubscript = false;
+            bool isInSuperscript = false;
 
             char lastChar = '|';
             string nextChar = "";
             bool ignoreChar = false;
-
-            // Sometimes people don't use prompts correctly, so use a prompt rather than underline if we
-            // find it in the answer line
-            int firstPromptIndex = -1;
-            string lowerLine = line.ToLowerInvariant();
-            firstPromptIndex = lowerLine.IndexOf("prompt");
 
             if (ignoreUnderscores)
             {
                 // We're in a tossup, see if we need to bold everything before power
                 if (line.Contains("(*)"))
                 {
-                    line = "²" + line;
-                    line = line.Replace("(*)", "³");
+                    line = "▲" + line;
+                    line = line.Replace("(*)", "◊");
                 }
             }
 
@@ -124,32 +120,15 @@
                     }
                     else
                     {
-                        if (firstPromptIndex == -1 || index < firstPromptIndex)
+                        if (isInAnswer)
                         {
-                            if (isInAnswer)
-                            {
-                                builder.Append(@"\b0 \ul0 ");
-                                isInAnswer = false;
-                            }
-                            else
-                            {
-                                builder.Append(@"\b \ul ");
-                                isInAnswer = true;
-                            }
+                            builder.Append(@"\b0 \ul0 ");
+                            isInAnswer = false;
                         }
                         else
                         {
-                            // It's probably a prompt, so just single underline
-                            if (isInAnswer)
-                            {
-                                builder.Append(@"\ul0 ");
-                                isInAnswer = false;
-                            }
-                            else
-                            {
-                                builder.Append(@"\ul ");
-                                isInAnswer = true;
-                            }
+                            builder.Append(@"\b \ul ");
+                            isInAnswer = true;
                         }
                     }
                 }
@@ -180,9 +159,41 @@
                             // Special case for unicode characters
                             builder.Append(c);
                         }
+                        else if (nextChar == "s")
+                        {
+                            // Start or stop subscripts
+                            if (isInSubscript)
+                            {
+                                builder.Append(@"\nosupersub");
+                                isInSubscript = false;
+                            }
+                            else
+                            {
+                                builder.Append(@"\sub");
+                                isInSubscript = true;
+                            }
+                        }
+                        else if (nextChar == "S")
+                        {
+                            // Start or stop superscripts
+                            if (isInSuperscript)
+                            {
+                                builder.Append(@"\nosupersub");
+                                isInSuperscript = false;
+                            }
+                            else
+                            {
+                                builder.Append(@"\super");
+                                isInSuperscript = true;
+                            }
+                        }
+                        else if (nextChar == "\\")
+                        {
+                            // Do nothing.  We'll print the "\" next time
+                        }
                         else
                         {
-                            // Do nothing.  If there's another \\ then we'll print it next time
+                            // TODO: Should we do anything here? Inserting a \ can be dangerous in RTF
                         }
                     }
                 }
@@ -203,18 +214,18 @@
                     if (isInParen)
                     {
                         isInParen = false;
-                        builder.Append(@") \f99998\fs24");
+                        builder.Append(@")\f99998\fs24 ");
                     }
                     else
                     {
                         builder.Append(c);
                     }
                 }
-                else if (c == '²')
+                else if (c == '▲')
                 {
                     builder.Append(@"\b ");
                 }
-                else if (c == '³')
+                else if (c == '◊')
                 {
                     builder.Append(@"(*)\b0 ");
                 }
@@ -543,43 +554,46 @@
                     // Each bonus is split into different parts by ||
                     string[] bonusParts = columns[i].Split(new string[] { "||" }, StringSplitOptions.None);
 
-                    string writerName = string.Empty;
-                    if (includeWriterNames)
+                    if (bonusParts.Length >= 7)
                     {
-                        writerName = string.Format(" <{0}>", bonusParts[7]);
-                    }
-
-                    // Get the different parts of the bonus
-                    builder.Append(@"\keep \keepn ");
-                    builder.Append(GetFormattedText(string.Format(@"{0}{1} ", formattedIndex, bonusParts[0]), true));
-                    builder.Append(@"\line ");
-                    builder.Append(GetFormattedText(string.Format(@"[10] {0} ", bonusParts[1]), true));
-                    builder.Append(@"\line ");
-                    builder.Append(GetFormattedText(string.Format(@"ANSWER: {0}", bonusParts[2]), false));
-                    builder.Append(@"\line ");
-                    builder.Append(GetFormattedText(string.Format(@"[10] {0} ", bonusParts[3]), true));
-                    builder.Append(@"\line ");
-                    builder.Append(GetFormattedText(string.Format(@"ANSWER: {0} ", bonusParts[4]), false));
-                    builder.Append(@"\line ");
-                    builder.Append(GetFormattedText(string.Format(@"[10] {0} ", bonusParts[5]), true));
-                    builder.Append(@"\line ");
-                    builder.Append(GetFormattedText(string.Format(@"ANSWER: {0}{1} ", bonusParts[6], writerName), false));
-
-                    if (includeComments)
-                    {
-                        if (!string.IsNullOrEmpty(bonusParts[8]))
+                        string writerName = string.Empty;
+                        if (includeWriterNames)
                         {
-                            List<string> filteredComments = GetFilteredComments(bonusParts[8].Split(new string[] { "~~" }, StringSplitOptions.RemoveEmptyEntries), commentFilters);
-                            if (filteredComments.Count > 0)
+                            writerName = string.Format(" <{0}>", bonusParts[7]);
+                        }
+
+                        // Get the different parts of the bonus
+                        builder.Append(@"\keep \keepn ");
+                        builder.Append(GetFormattedText(string.Format(@"{0}{1} ", formattedIndex, bonusParts[0]), true));
+                        builder.Append(@"\line ");
+                        builder.Append(GetFormattedText(string.Format(@"[10] {0} ", bonusParts[1]), true));
+                        builder.Append(@"\line ");
+                        builder.Append(GetFormattedText(string.Format(@"ANSWER: {0}", bonusParts[2]), false));
+                        builder.Append(@"\line ");
+                        builder.Append(GetFormattedText(string.Format(@"[10] {0} ", bonusParts[3]), true));
+                        builder.Append(@"\line ");
+                        builder.Append(GetFormattedText(string.Format(@"ANSWER: {0} ", bonusParts[4]), false));
+                        builder.Append(@"\line ");
+                        builder.Append(GetFormattedText(string.Format(@"[10] {0} ", bonusParts[5]), true));
+                        builder.Append(@"\line ");
+                        builder.Append(GetFormattedText(string.Format(@"ANSWER: {0}{1} ", bonusParts[6], writerName), false));
+
+                        if (includeComments)
+                        {
+                            if (!string.IsNullOrEmpty(bonusParts[8]))
                             {
-                                builder.Append(@"\cf2 "); // Color comments red
-
-                                foreach (string comment in filteredComments)
+                                List<string> filteredComments = GetFilteredComments(bonusParts[8].Split(new string[] { "~~" }, StringSplitOptions.RemoveEmptyEntries), commentFilters);
+                                if (filteredComments.Count > 0)
                                 {
-                                    builder.Append(string.Format(@"\line {0}", comment));
-                                }
+                                    builder.Append(@"\cf2 "); // Color comments red
 
-                                builder.Append(@"\cf1 "); // Revert to black
+                                    foreach (string comment in filteredComments)
+                                    {
+                                        builder.Append(string.Format(@"\line {0}", comment));
+                                    }
+
+                                    builder.Append(@"\cf1 "); // Revert to black
+                                }
                             }
                         }
                     }

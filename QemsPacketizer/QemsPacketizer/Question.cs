@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace QemsPacketizer
@@ -56,6 +57,36 @@ namespace QemsPacketizer
         public bool IsPlayoffsQuestion { get; set; }
 
         public bool IsExtraQuestion { get; set; }
+
+        public int Length
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(this.TossupText))
+                {
+                    return GetLengthWithoutPronunciationGuides(this.TossupText);
+                }
+                else
+                {
+                    return GetLengthWithoutPronunciationGuides(this.LeadinText)
+                        + GetLengthWithoutPronunciationGuides(this.Part1Text)
+                        + GetLengthWithoutPronunciationGuides(this.Part2Text)
+                        + GetLengthWithoutPronunciationGuides(this.Part3Text);
+                }
+            }
+        }
+
+        public static int GetLengthWithoutPronunciationGuides(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return 0;
+            }
+
+            // Match anything in between parens and get rid of it
+            Regex regex = new Regex(@"\(.+\)");
+            return regex.Replace(text, "").Length;
+        }
 
         /// <summary>
         /// The packet that was set in QEMS

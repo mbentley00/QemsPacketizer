@@ -66,6 +66,8 @@ namespace QemsPacketizer
                 string outputFile = questionSet.WriteOutput(this.txtOutputDir.Text, this.setType);
                 questionSet.WriteCategoriesToCsv(this.txtOutputDir.Text, this.setType);
 
+                //string outputFile = @"C:\Users\mbentley\AppData\Local\Temp\QEMS2\131424937605156008 - Copy.csv";
+
                 Utilities.GenerateRtf(outputFile,
                     this.txtOutputDir.Text,
                     this.chkScoresheet.Checked,
@@ -260,16 +262,38 @@ namespace QemsPacketizer
             this.txtPreviousOutputFile.Enabled = true;
             this.chkScoresheet.Enabled = true;
             this.chkScoresheet.Visible = true;
+            this.cmdQuestionLength.Visible = true;
 
-            this.txtSetName.Text = "PACE NSC 2017";
-            this.txtLogoFile.Text = @"C:\Users\mbentley\Downloads\PACE 2017 med.bmp";
-            this.txtQuestionInput.Text = @"C:\Users\mbentley\Downloads\packet2 (14).csv";
-            this.chkScoresheet.Checked = true;
+            this.txtSetName.Text = "NASAT 2017";
+            this.txtLogoFile.Text = @"C:\Users\mbentley\Downloads\hsapq_logo.bmp";
+            this.txtQuestionInput.Text = @"C:\Users\mbentley\Downloads\packet2 (15).csv";
+            this.chkScoresheet.Checked = false;
 
-            this.txtPackets.Text = "24";
-            this.chkComments.Checked = true;
+            this.txtPackets.Text = "20";
+            this.chkComments.Checked = false;
             this.chkWriterNames.Checked = true;
-            this.opNsc.Checked = true;
+            this.opNasat.Checked = true;
+        }
+
+        private void cmdQuestionLength_Click(object sender, EventArgs e)
+        {
+            this.lblLength.Text = "";
+            this.lblLength.Visible = true;
+            QuestionSet questionSet = new QuestionSet(this.setType, this.txtQuestionInput.Text, Int32.Parse(txtPackets.Text));
+            questionSet.LoadRealQuestions(txtQuestionInput.Text, this.setType);
+            List<int> tossupLengths = new List<int>();
+            foreach (var question in questionSet.UnassignedTossups)
+            {
+                tossupLengths.Add(question.Length);
+            }
+
+            List<int> bonusLengths = new List<int>();
+            foreach (var question in questionSet.UnassignedBonuses)
+            {
+                bonusLengths.Add(question.Length);
+            }
+
+            this.lblLength.Text = $"Tossup Length: {(int)tossupLengths.Average()}, Bonus Length: {(int)bonusLengths.Average()}"; 
         }
     }
 }
