@@ -266,7 +266,7 @@ namespace QemsPacketizer
 
             this.txtSetName.Text = "NASAT 2017";
             this.txtLogoFile.Text = @"C:\Users\mbentley\Downloads\hsapq_logo.bmp";
-            this.txtQuestionInput.Text = @"C:\Users\mbentley\Downloads\packet2 (15).csv";
+            this.txtQuestionInput.Text = @"C:\Users\mbentley\Downloads\packet2 (17).csv";
             this.chkScoresheet.Checked = false;
 
             this.txtPackets.Text = "20";

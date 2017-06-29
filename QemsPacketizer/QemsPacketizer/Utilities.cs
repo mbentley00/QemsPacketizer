@@ -65,9 +65,8 @@
             bool isInSubscript = false;
             bool isInSuperscript = false;
 
-            char lastChar = '|';
             string nextChar = "";
-            bool ignoreChar = false;
+            string nextChar2 = "";
 
             if (ignoreUnderscores)
             {
@@ -79,25 +78,27 @@
                 }
             }
 
-            int index = 0;
-            foreach (char c in line.ToCharArray())
+            var charArray = line.ToCharArray();
+            for (int i = 0; i < charArray.Length; i++)
             {
-                if (ignoreChar)
-                {
-                    // Skip this character--done to deal with prompts
-                    lastChar = c;
-                    index++;
-                    ignoreChar = false;
-                    continue;
-                }
+                var c = charArray[i];
 
-                if (index < line.Length - 1)
+                if (i < line.Length - 1)
                 {
-                    nextChar = line.Substring(index + 1, 1);
+                    nextChar = line.Substring(i + 1, 1);
                 }
                 else
                 {
                     nextChar = "";
+                }
+
+                if (i < line.Length - 2)
+                {
+                    nextChar2 = line.Substring(i + 2, 1);
+                }
+                else
+                {
+                    nextChar2 = "";
                 }
 
                 if (c == '_' && !ignoreUnderscores)
@@ -109,13 +110,13 @@
                         {
                             builder.Append(@"\ul0 ");
                             isInPrompt = false;
-                            ignoreChar = true;
+                            i++; // Skip processing the second underline
                         }
                         else
                         {
                             builder.Append(@"\ul ");
                             isInPrompt = true;
-                            ignoreChar = true;
+                            i++; // Skip processing the second underline
                         }
                     }
                     else
@@ -147,57 +148,77 @@
                 }
                 else if (c == '\\')
                 {
-                    if (lastChar == '\\')
+                    // Rules for backslashes:
+                    // Subscript: \\sText\\s
+                    // Superscript: \\SText\\S
+                    // Literal parentheses: \\(text\\)
+                    // Literal backslash: test \\ test2
+                    // The literal backslash is the default if we don't find an s,S,(,) after the double backslash
+
+                    if (nextChar == "\\")
                     {
-                        // Actually print this character
-                        builder.Append(c);
-                    }
-                    else
-                    {
-                        if (nextChar == "u")
-                        {
-                            // Special case for unicode characters
-                            builder.Append(c);
-                        }
-                        else if (nextChar == "s")
+                        if (nextChar2 == "s")
                         {
                             // Start or stop subscripts
                             if (isInSubscript)
                             {
-                                builder.Append(@"\nosupersub");
+                                builder.Append(@"\nosupersub ");
                                 isInSubscript = false;
                             }
                             else
                             {
-                                builder.Append(@"\sub");
+                                builder.Append(@"\sub ");
                                 isInSubscript = true;
                             }
+
+                            i += 2;
                         }
-                        else if (nextChar == "S")
+                        else if (nextChar2 == "S")
                         {
                             // Start or stop superscripts
                             if (isInSuperscript)
                             {
-                                builder.Append(@"\nosupersub");
+                                builder.Append(@"\nosupersub ");
                                 isInSuperscript = false;
                             }
                             else
                             {
-                                builder.Append(@"\super");
+                                builder.Append(@"\super ");
                                 isInSuperscript = true;
                             }
+
+                            i += 2;
                         }
-                        else if (nextChar == "\\")
+                        else if (nextChar2 == "(")
                         {
-                            // Do nothing.  We'll print the "\" next time
+                            builder.Append("(");
+                            i += 2;
+                        }
+                        else if (nextChar2 == ")")
+                        {
+                            builder.Append(")");
+                            i += 2;
                         }
                         else
                         {
-                            // TODO: Should we do anything here? Inserting a \ can be dangerous in RTF
+                            // In the default case, print a double backslash so that RTF escapes properly
+                            builder.Append("\\\\");
+                            i++;
                         }
                     }
+                    else if (nextChar == "u")
+                    {
+                        // Print the literal \u for unicode character output
+                        builder.Append("\\u");
+                        i++;
+                    }
+                    else
+                    {
+                        // Don't write the single backslash for now, it should never be the case that this happens
+                        Console.WriteLine("Unexpected single backslash");
+                    }
                 }
-                else if (c == '(' && lastChar != '\\')
+                else if (c == '(')
                 {
                     if (!isInParen)
                     {
@@ -209,7 +230,7 @@
                         builder.Append(c);
                     }
                 }
-                else if (c == ')' && lastChar != '\\')
+                else if (c == ')')
                 {
                     if (isInParen)
                     {
@@ -233,9 +254,6 @@
                 {
                     builder.Append(c);
                 }
-
-                lastChar = c;
-                index++;
             }
 
             return builder.ToString();
