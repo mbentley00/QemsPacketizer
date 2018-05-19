@@ -375,7 +375,10 @@
         /// <returns>Updated rtf</returns>
         public static string AddFontToScoresheet(string scoresheetRtf, string font)
         {
-            string replaceText = string.Format(@"{{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fnil\fcharset0 Franklin Gothic Heavy;}}", font);
+
+            // Source Sans Pro Semibold
+            string replaceText = string.Format(@"{{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fbidi \fswiss\fcharset0\fprq2{{\*\panose 00000000000000000000}}Source Sans Pro SemiBold;}}", font);
+            // string replaceText = string.Format(@"{{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fbidi \fswiss\fcharset0\fprq2{{\*\panose 00000000000000000000}}Source Sans Pro SemiBold;}}", font);
             return scoresheetRtf.Replace(@"{\fonttbl", replaceText);
         }
 
@@ -396,9 +399,9 @@
         public static string GetNscOrNasatText(List<string> columns, bool includeWriterNames, bool includeCategories, bool includeComments, List<string> commentFilters, string setName, string round, string bitmapText, string font)
         {
             StringBuilder builder = new StringBuilder();
-            builder.Append(@"{\colortbl;\red0\green0\blue0;\red255\green0\blue0;}");
+            builder.Append(@"{\colortbl;\red0\green0\blue0;\red0\green0\blue255;}");
             builder.Append(string.Format(@"{{\footer\pard\qr {0} - Round {1} - Page \chpgn  of {{\field{{\*\fldinst  NUMPAGES }}}}\par}} \keep \keepn", setName, round));
-            builder.Append(string.Format(@"\keep \keepn {{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fnil\fcharset0 Franklin Gothic Heavy;}}}}\viewkind4\uc1\par\f99998\fs24\qc\b", font));
+            builder.Append(string.Format(@"\keep \keepn {{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fbidi \fswiss\fcharset0\fprq2{{\*\panose 00000000000000000000}}Source Sans Pro SemiBold;}}}}\viewkind4\uc1\par\f99998\fs24\qc\b", font));
             string tossupHeaderText = string.Format(@"{0} - Round {1} - Tossups", setName, round);
             builder.Append(bitmapText + @"\line " + tossupHeaderText);
             builder.Append(@"\par\sb0\sa0\par\sb0\sa0\keep\keepn\ql\b0");
@@ -406,7 +409,7 @@
             builder.Append(GetTossupText(columns, 0, 21, 1, includeWriterNames, includeCategories, includeComments, commentFilters, true));
 
             builder.Append(@"\page ");
-            builder.Append(string.Format(@"\keep \keepn {{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fnil\fcharset0 Franklin Gothic Heavy;}}}}\viewkind4\uc1\par\sb0\sa0\f99998\fs24\qc\b", font));
+            builder.Append(string.Format(@"\keep \keepn {{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fbidi \fswiss\fcharset0\fprq2{{\*\panose 00000000000000000000}}Source Sans Pro SemiBold;}}}}\viewkind4\uc1\par\sb0\sa0\f99998\fs24\qc\b", font));
             string bonusHeaderText = string.Format(@"{0} - Round {1} - Bonuses", setName, round);
             builder.Append(bitmapText + @"\line " + bonusHeaderText);
             builder.Append(@"\par\sb0\sa0\par\sb0\sa0\keep\keepn\ql\b0");
@@ -432,9 +435,9 @@
         public static string GetVhslText(List<string> columns, bool includeWriterNames, bool includeCategoryNames, bool includeComments, List<string> commentFilters, string setName, string round, string bitmapText, string font)
         {
             StringBuilder builder = new StringBuilder();
-            builder.Append(@"{\colortbl;\red0\green0\blue0;\red255\green0\blue0;}");
+            builder.Append(@"{\colortbl;\red0\green0\blue0;\red0\green0\blue255;}");
             builder.Append(string.Format(@"{{\footer\pard\qr {0} - Round {1} - Page \chpgn  of {{\field{{\*\fldinst  NUMPAGES }}}}\par}} \keep \keepn", setName, round));
-            builder.Append(string.Format(@"\keep \keepn {{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fnil\fcharset0 Franklin Gothic Heavy;}}}}\viewkind4\uc1\par\f99998\fs24\qc\b", font));
+            builder.Append(string.Format(@"\keep \keepn {{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fbidi \fswiss\fcharset0\fprq2{{\*\panose 00000000000000000000}}Source Sans Pro SemiBold;}}}}\viewkind4\uc1\par\f99998\fs24\qc\b", font));
             string period1HeaderText = string.Format(@"{0} - Round {1} - First Period, Fifteen Tossups", setName, round);
             builder.Append(bitmapText + @"\line " + period1HeaderText);
             builder.Append(@"\par\sb0\sa0\par\sb0\sa0\keep\keepn\ql\b0");
@@ -442,7 +445,7 @@
             builder.Append(GetTossupText(columns, 0, 15, 1, includeWriterNames, includeCategoryNames, includeComments, commentFilters, true));
 
             builder.Append(@"\page ");
-            builder.Append(string.Format(@"\keep \keepn {{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fnil\fcharset0 Franklin Gothic Heavy;}}}}\viewkind4\uc1\par\sb0\sa0\f0\fs24\qc\b", font));
+            builder.Append(string.Format(@"\keep \keepn {{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fbidi \fswiss\fcharset0\fprq2{{\*\panose 00000000000000000000}}Source Sans Pro SemiBold;}}}}\viewkind4\uc1\par\sb0\sa0\f0\fs24\qc\b", font));
             string period2HeaderText = string.Format(@"{0} - Round {1} - Directed Period", setName, round);
             builder.Append(bitmapText + @"\line " + period2HeaderText);
             builder.Append(@"\par\sb0\sa0\par\sb0\sa0\keep\keepn\ql\b0");
@@ -450,7 +453,7 @@
             builder.Append(GetVhslBonusText(columns, 35, 20, 1, includeWriterNames, includeCategoryNames, includeComments, true));
 
             builder.Append(@"\page ");
-            builder.Append(string.Format(@"\keep \keepn {{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fnil\fcharset0 Franklin Gothic Heavy;}}}}\viewkind4\uc1\par\sb0\sa0\f0\fs24\qc\b", font));
+            builder.Append(string.Format(@"\keep \keepn {{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fbidi \fswiss\fcharset0\fprq2{{\*\panose 00000000000000000000}}Source Sans Pro SemiBold;}}}}\viewkind4\uc1\par\sb0\sa0\f0\fs24\qc\b", font));
             string period3HeaderText = string.Format(@"{0} - Round {1} - Third Period, Fifteen Tossups", setName, round);
             builder.Append(bitmapText + @"\line " + period3HeaderText);
             builder.Append(@"\par\sb0\sa0\par\sb0\sa0\keep\keepn\ql\b0");
@@ -458,7 +461,7 @@
             builder.Append(GetTossupText(columns, 15, 15, 1, includeWriterNames, includeCategoryNames, includeComments, commentFilters, true));
 
             builder.Append(@"\page ");
-            builder.Append(string.Format(@"\keep \keepn {{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fnil\fcharset0 Franklin Gothic Heavy;}}}}\viewkind4\uc1\par\sb0\sa0\f0\fs24\qc\b", font));
+            builder.Append(string.Format(@"\keep \keepn {{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fbidi \fswiss\fcharset0\fprq2{{\*\panose 00000000000000000000}}Source Sans Pro SemiBold;}}}}\viewkind4\uc1\par\sb0\sa0\f0\fs24\qc\b", font));
             string tbHeaderText = string.Format(@"{0} - Round {1} - Tiebreaker Questions", setName, round);
             builder.Append(bitmapText + @"\line " + tbHeaderText);
             builder.Append(@"\par\sb0\sa0\par\sb0\sa0\keep\keepn\ql\b0");
@@ -508,7 +511,7 @@
                     string writerName = string.Empty;
                     if (includeWriterNames && includeCategories)
                     {
-                        writerName = string.Format(" <{0} - {1}>", tossupParts[2], tossupParts[4]);
+                        writerName = string.Format(" <{0}, {1}>", tossupParts[2], tossupParts[4]);
                     }
                     else if (includeWriterNames)
                     {
@@ -519,7 +522,11 @@
                         writerName = string.Format(" <{0}>", tossupParts[4]);
                     }
 
-                    builder.Append(GetFormattedText(string.Format(@"ANSWER: {0}{1}", tossupParts[1], writerName), false));
+                    builder.Append(GetFormattedText(string.Format(@"ANSWER: {0}", tossupParts[1]), false));
+                    if (!string.IsNullOrEmpty(writerName))
+                    {
+                        builder.Append($@"\line{GetFormattedText(writerName, true)} ");
+                    }
 
                     // Add any comments if necessary
                     if (includeComments)
@@ -589,7 +596,7 @@
                         string writerName = string.Empty;
                         if (includeWriterNames && includeCategories)
                         {
-                            writerName = string.Format(" <{0} - {1}>", bonusParts[7], bonusParts[9]);
+                            writerName = string.Format(" <{0}, {1}>", bonusParts[7], bonusParts[9]);
                         }
                         else if (includeWriterNames)
                         {
@@ -614,7 +621,11 @@
                         builder.Append(@"\line ");
                         builder.Append(GetFormattedText(string.Format(@"[10] {0} ", bonusParts[5]), true));
                         builder.Append(@"\line ");
-                        builder.Append(GetFormattedText(string.Format(@"ANSWER: {0}{1} ", bonusParts[6], writerName), false));
+                        builder.Append(GetFormattedText(string.Format(@"ANSWER: {0} ", bonusParts[6]), false));
+                        if (!string.IsNullOrEmpty(writerName))
+                        {
+                            builder.Append($@"\line{GetFormattedText(writerName, true)} ");
+                        }
 
                         if (includeComments)
                         {
@@ -640,6 +651,7 @@
                 }
                 else
                 {
+                    builder.Append(@"\keep \keepn ");
                     builder.Append(string.Format(@"{0}{1}\par\sb0\sa0\par\sb0\sa0 ", formattedIndex, columns[i]));
                 }
 

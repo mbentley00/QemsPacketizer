@@ -178,7 +178,7 @@ namespace QemsPacketizer
                         this.TossupAnswer.Replace("\"", "\"\""),
                         this.Author.Replace("\"", "\"\""),
                         string.Join("~~", this.Comments).Replace("\"", "\"\""),
-                        this.Category.ToString().Replace("\"", "\"\""),
+                        this.Category.ToString(true).Replace("\"", "\"\""),
                         this.QemsQuestionId.Replace("\"", "\"\""));
                 }
                 else if (!string.IsNullOrEmpty(this.Part1Text))
@@ -193,7 +193,7 @@ namespace QemsPacketizer
                         this.Part3Answer.Replace("\"", "\"\""),
                         this.Author.Replace("\"", "\"\""),
                         string.Join("~~", this.Comments).Replace("\"", "\"\""),
-                        this.Category.ToString().Replace("\"", "\"\""),
+                        this.Category.ToString(true).Replace("\"", "\"\""),
                         this.QemsQuestionId.Replace("\"", "\"\"")
                         );
                 }

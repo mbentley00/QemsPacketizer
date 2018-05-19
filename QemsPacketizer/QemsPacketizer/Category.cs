@@ -320,5 +320,20 @@
         {
             return this.Name;
         }
+
+        public string ToString(bool shortenNames)
+        {
+            if (shortenNames)
+            {
+                // Make some category names shorter
+                string returnValue = this.Name;
+                returnValue = returnValue.Replace("Mixed/Other/General Knowledge - Mixed/Other/General Knowledge", "Mixed/Other/General Knowledge");
+                return returnValue;
+            }
+            else
+            {
+                return this.ToString();
+            }
+        }
     }
 }

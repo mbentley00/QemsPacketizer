@@ -271,6 +271,7 @@ namespace QemsPacketizer
             this.txtQuestionInput.Text = @"C:\Users\mbentley\Downloads\packet2 (3).csv";
             this.chkScoresheet.Checked = false;
 
+            this.cmbFont.Text = "Times New Roman";
             this.txtPackets.Text = "24";
             this.chkComments.Checked = true;
             this.chkWriterNames.Checked = true;
