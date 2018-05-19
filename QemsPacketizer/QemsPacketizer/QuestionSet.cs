@@ -1927,7 +1927,7 @@
             return category;
         }
 
-        public void OutputCategoryFiles(string setName, string font, bool includeWriterNames, bool includeComments, List<string> commentFilters, string outputDirectory, bool separateSubCategoies)
+        public void OutputCategoryFiles(string setName, string font, bool includeWriterNames, bool includeCategories, bool includeComments, List<string> commentFilters, string outputDirectory, bool separateSubCategoies)
         {
             Directory.CreateDirectory(outputDirectory);
 
@@ -1994,7 +1994,7 @@
                     builder.Append(@"\line " + tossupHeader);
                     builder.Append(@"\par\sb0\sa0\par\sb0\sa0\keep\keepn\ql\b0");
 
-                    builder.Append(Utilities.GetTossupText(tossups, 0, tossups.Count, 1, includeWriterNames, includeComments, commentFilters, false));
+                    builder.Append(Utilities.GetTossupText(tossups, 0, tossups.Count, 1, includeWriterNames, includeCategories, includeComments, commentFilters, false));
 
                     builder.Append(@"\page ");
                     builder.Append(string.Format(@"\keep \keepn {{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fnil\fcharset0 Segoe UI Black;}}}}\viewkind4\uc1\par\sb0\sa0\f0\fs24\qc\b", font));
@@ -2002,7 +2002,7 @@
                     builder.Append(@"\line " + bonusHeader);
                     builder.Append(@"\par\sb0\sa0\par\sb0\sa0\keep\keepn\ql\b0");
 
-                    builder.Append(Utilities.GetAcfBonusText(bonuses, 0, bonuses.Count, 1, includeWriterNames, includeComments, commentFilters, false));
+                    builder.Append(Utilities.GetAcfBonusText(bonuses, 0, bonuses.Count, 1, includeWriterNames, includeCategories, includeComments, commentFilters, false));
 
                     builder.Append("}");
                     File.WriteAllText(outputFile, builder.ToString());

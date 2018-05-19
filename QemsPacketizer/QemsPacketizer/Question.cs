@@ -173,16 +173,17 @@ namespace QemsPacketizer
             {
                 if (!string.IsNullOrEmpty(this.TossupText))
                 {
-                    return string.Format("\"{0}||{1}||{2}||{3}||{4}\"", 
+                    return string.Format("\"{0}||{1}||{2}||{3}||{4}||{5}\"", 
                         this.TossupText.Replace("\"", "\"\""),
                         this.TossupAnswer.Replace("\"", "\"\""),
                         this.Author.Replace("\"", "\"\""),
                         string.Join("~~", this.Comments).Replace("\"", "\"\""),
+                        this.Category.ToString().Replace("\"", "\"\""),
                         this.QemsQuestionId.Replace("\"", "\"\""));
                 }
                 else if (!string.IsNullOrEmpty(this.Part1Text))
                 {
-                    return string.Format("\"{0}||{1}||{2}||{3}||{4}||{5}||{6}||{7}||{8}||{9}\"",
+                    return string.Format("\"{0}||{1}||{2}||{3}||{4}||{5}||{6}||{7}||{8}||{9}||{10}\"",
                         this.LeadinText.Replace("\"", "\"\""),
                         this.Part1Text.Replace("\"", "\"\""),
                         this.Part1Answer.Replace("\"", "\"\""),
@@ -192,6 +193,7 @@ namespace QemsPacketizer
                         this.Part3Answer.Replace("\"", "\"\""),
                         this.Author.Replace("\"", "\"\""),
                         string.Join("~~", this.Comments).Replace("\"", "\"\""),
+                        this.Category.ToString().Replace("\"", "\"\""),
                         this.QemsQuestionId.Replace("\"", "\"\"")
                         );
                 }
@@ -203,12 +205,12 @@ namespace QemsPacketizer
             else {
                 if (!string.IsNullOrEmpty(this.TossupText))
                 {
-                    return string.Format("{0}||{1}||{2}||{3}", this.TossupText, this.TossupAnswer,
-                        this.Author, string.Join("~~", this.Comments));
+                    return string.Format("{0}||{1}||{2}||{3}||{4}", this.TossupText, this.TossupAnswer,
+                        this.Author, string.Join("~~", this.Comments), this.Category);
                 }
                 else if (!string.IsNullOrEmpty(this.Part1Text))
                 {
-                    return string.Format("{0}||{1}||{2}||{3}||{4}||{5}||{6}||{7}||{8}",
+                    return string.Format("{0}||{1}||{2}||{3}||{4}||{5}||{6}||{7}||{8}||{9}",
                         this.LeadinText,
                         this.Part1Text,
                         this.Part1Answer,
@@ -217,7 +219,8 @@ namespace QemsPacketizer
                         this.Part3Text,
                         this.Part3Answer,
                         this.Author,
-                        string.Join("~~", this.Comments));
+                        string.Join("~~", this.Comments),
+                        this.Category);
                 }
                 else
                 {

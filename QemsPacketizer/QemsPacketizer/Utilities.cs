@@ -311,6 +311,7 @@
             bool includeComments,
             List<string> commentFilters,
             bool includeWriterNames,
+            bool includeCategories,
             string setName,
             string font)
         {
@@ -351,11 +352,11 @@
 
                 if (setType == QuestionSet.SetType.NSC || setType == QuestionSet.SetType.Nasat)
                 {
-                    builder.Append(GetNscOrNasatText(cols, includeWriterNames, includeComments, commentFilters, setName, formattedRound, bitmapText, font));
+                    builder.Append(GetNscOrNasatText(cols, includeWriterNames, includeCategories, includeComments, commentFilters, setName, formattedRound, bitmapText, font));
                 }
                 else if (setType == QuestionSet.SetType.VHSL)
                 {
-                    builder.Append(GetVhslText(cols, includeWriterNames, includeComments, commentFilters, setName, formattedRound, bitmapText, font));
+                    builder.Append(GetVhslText(cols, includeWriterNames, includeCategories, includeComments, commentFilters, setName, formattedRound, bitmapText, font));
                 }
 
                 builder.Append("}");
@@ -384,6 +385,7 @@
         /// </summary>
         /// <param name="columns">Columns parsed from the CSV with question information. Each column is a tossup or bonus.</param>
         /// <param name="includeWriterNames">If true, include writer names</param>
+        /// <param name="includeCategories">If true, include category names</param>
         /// <param name="includeComments">If true, include comments under the questions</param>
         /// <param name="commentFilters">If non-empty, filter comments to only those which contain these words</param>
         /// <param name="setName">Name of the question set</param>
@@ -391,7 +393,7 @@
         /// <param name="bitmapText">The binary representation of the logo bitmap</param>
         /// <param name="font">Font name</param>
         /// <returns>RTF rendering of an NSC or NASAT packet</returns>
-        public static string GetNscOrNasatText(List<string> columns, bool includeWriterNames, bool includeComments, List<string> commentFilters, string setName, string round, string bitmapText, string font)
+        public static string GetNscOrNasatText(List<string> columns, bool includeWriterNames, bool includeCategories, bool includeComments, List<string> commentFilters, string setName, string round, string bitmapText, string font)
         {
             StringBuilder builder = new StringBuilder();
             builder.Append(@"{\colortbl;\red0\green0\blue0;\red255\green0\blue0;}");
@@ -401,7 +403,7 @@
             builder.Append(bitmapText + @"\line " + tossupHeaderText);
             builder.Append(@"\par\sb0\sa0\par\sb0\sa0\keep\keepn\ql\b0");
 
-            builder.Append(GetTossupText(columns, 0, 21, 1, includeWriterNames, includeComments, commentFilters, true));
+            builder.Append(GetTossupText(columns, 0, 21, 1, includeWriterNames, includeCategories, includeComments, commentFilters, true));
 
             builder.Append(@"\page ");
             builder.Append(string.Format(@"\keep \keepn {{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fnil\fcharset0 Franklin Gothic Heavy;}}}}\viewkind4\uc1\par\sb0\sa0\f99998\fs24\qc\b", font));
@@ -409,7 +411,7 @@
             builder.Append(bitmapText + @"\line " + bonusHeaderText);
             builder.Append(@"\par\sb0\sa0\par\sb0\sa0\keep\keepn\ql\b0");
 
-            builder.Append(GetAcfBonusText(columns, 21, 21, 1, includeWriterNames, includeComments, commentFilters, true));
+            builder.Append(GetAcfBonusText(columns, 21, 21, 1, includeWriterNames, includeCategories, includeComments, commentFilters, true));
 
             return builder.ToString();
         }
@@ -427,7 +429,7 @@
         /// <param name="bitmapText">The binary representation of the logo bitmap</param>
         /// <param name="font">Font name</param>
         /// <returns>RTF rendering of a VHSL packet</returns>
-        public static string GetVhslText(List<string> columns, bool includeWriterNames, bool includeComments, List<string> commentFilters, string setName, string round, string bitmapText, string font)
+        public static string GetVhslText(List<string> columns, bool includeWriterNames, bool includeCategoryNames, bool includeComments, List<string> commentFilters, string setName, string round, string bitmapText, string font)
         {
             StringBuilder builder = new StringBuilder();
             builder.Append(@"{\colortbl;\red0\green0\blue0;\red255\green0\blue0;}");
@@ -437,7 +439,7 @@
             builder.Append(bitmapText + @"\line " + period1HeaderText);
             builder.Append(@"\par\sb0\sa0\par\sb0\sa0\keep\keepn\ql\b0");
 
-            builder.Append(GetTossupText(columns, 0, 15, 1, includeWriterNames, includeComments, commentFilters, true));
+            builder.Append(GetTossupText(columns, 0, 15, 1, includeWriterNames, includeCategoryNames, includeComments, commentFilters, true));
 
             builder.Append(@"\page ");
             builder.Append(string.Format(@"\keep \keepn {{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fnil\fcharset0 Franklin Gothic Heavy;}}}}\viewkind4\uc1\par\sb0\sa0\f0\fs24\qc\b", font));
@@ -445,7 +447,7 @@
             builder.Append(bitmapText + @"\line " + period2HeaderText);
             builder.Append(@"\par\sb0\sa0\par\sb0\sa0\keep\keepn\ql\b0");
 
-            builder.Append(GetVhslBonusText(columns, 35, 20, 1, includeWriterNames, includeComments, true));
+            builder.Append(GetVhslBonusText(columns, 35, 20, 1, includeWriterNames, includeCategoryNames, includeComments, true));
 
             builder.Append(@"\page ");
             builder.Append(string.Format(@"\keep \keepn {{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fnil\fcharset0 Franklin Gothic Heavy;}}}}\viewkind4\uc1\par\sb0\sa0\f0\fs24\qc\b", font));
@@ -453,7 +455,7 @@
             builder.Append(bitmapText + @"\line " + period3HeaderText);
             builder.Append(@"\par\sb0\sa0\par\sb0\sa0\keep\keepn\ql\b0");
 
-            builder.Append(GetTossupText(columns, 15, 15, 1, includeWriterNames, includeComments, commentFilters, true));
+            builder.Append(GetTossupText(columns, 15, 15, 1, includeWriterNames, includeCategoryNames, includeComments, commentFilters, true));
 
             builder.Append(@"\page ");
             builder.Append(string.Format(@"\keep \keepn {{\fonttbl{{\f99998\fnil\fcharset0 {0};}}{{\f99999\fnil\fcharset0 Franklin Gothic Heavy;}}}}\viewkind4\uc1\par\sb0\sa0\f0\fs24\qc\b", font));
@@ -461,8 +463,8 @@
             builder.Append(bitmapText + @"\line " + tbHeaderText);
             builder.Append(@"\par\sb0\sa0\par\sb0\sa0\keep\keepn\ql\b0");
 
-            builder.Append(GetTossupText(columns, 30, 5, 1, includeWriterNames, includeComments, commentFilters, true));
-            builder.Append(GetVhslBonusText(columns, 55, 2, 1, includeWriterNames, includeComments, false));
+            builder.Append(GetTossupText(columns, 30, 5, 1, includeWriterNames, includeCategoryNames, includeComments, commentFilters, true));
+            builder.Append(GetVhslBonusText(columns, 55, 2, 1, includeWriterNames, includeCategoryNames, includeComments, false));
 
             return builder.ToString();
         }
@@ -475,11 +477,12 @@
         /// <param name="tossupCount">How many tossups to read</param>
         /// <param name="tossupStartIndex">Tossup number to start from</param>
         /// <param name="includeWriterNames">If true, include writer names</param>
+        /// <param name="includeCategories">If true, include the question category</param>
         /// <param name="includeComments">If true, include comments</param>
         /// <param name="commentFilters">If non-empty, only include comments which match at least one of these terms</param>
         /// <param name="showNumber">If true, include the question number before the question</param>
         /// <returns>Rtf representation of the tossups in this packet</returns>
-        public static string GetTossupText(List<string> columns, int columnStartIndex, int tossupCount, int tossupStartIndex, bool includeWriterNames, bool includeComments, List<string> commentFilters, bool showNumber)
+        public static string GetTossupText(List<string> columns, int columnStartIndex, int tossupCount, int tossupStartIndex, bool includeWriterNames, bool includeCategories, bool includeComments, List<string> commentFilters, bool showNumber)
         {
             StringBuilder builder = new StringBuilder();
             int tossupIndex = tossupStartIndex;
@@ -503,9 +506,17 @@
 
                     // Get the tossup answer line
                     string writerName = string.Empty;
-                    if (includeWriterNames)
+                    if (includeWriterNames && includeCategories)
+                    {
+                        writerName = string.Format(" <{0} - {1}>", tossupParts[2], tossupParts[4]);
+                    }
+                    else if (includeWriterNames)
                     {
                         writerName = string.Format(" <{0}>", tossupParts[2]);
+                    }
+                    else if (includeCategories)
+                    {
+                        writerName = string.Format(" <{0}>", tossupParts[4]);
                     }
 
                     builder.Append(GetFormattedText(string.Format(@"ANSWER: {0}{1}", tossupParts[1], writerName), false));
@@ -551,11 +562,12 @@
         /// <param name="bonusCount">How many bonuses to read</param>
         /// <param name="bonusStartIndex">Bonus number to start with</param>
         /// <param name="includeWriterNames">If true, include writer names</param>
+        /// <param name="includeCategories">If true, include category name</param>
         /// <param name="includeComments">If true, include comments</param>
         /// <param name="commentFilters">If non-empty, filter comments to just these terms</param>
         /// <param name="showNumber">If true, show question number</param>
         /// <returns>Rtf text for ACF-style bonuses</returns>
-        public static string GetAcfBonusText(List<string> columns, int columnStartIndex, int bonusCount, int bonusStartIndex, bool includeWriterNames, bool includeComments, List<string> commentFilters, bool showNumber)
+        public static string GetAcfBonusText(List<string> columns, int columnStartIndex, int bonusCount, int bonusStartIndex, bool includeWriterNames, bool includeCategories, bool includeComments, List<string> commentFilters, bool showNumber)
         {
             StringBuilder builder = new StringBuilder();
             int bonusIndex = bonusStartIndex;
@@ -575,9 +587,17 @@
                     if (bonusParts.Length >= 7)
                     {
                         string writerName = string.Empty;
-                        if (includeWriterNames)
+                        if (includeWriterNames && includeCategories)
+                        {
+                            writerName = string.Format(" <{0} - {1}>", bonusParts[7], bonusParts[9]);
+                        }
+                        else if (includeWriterNames)
                         {
                             writerName = string.Format(" <{0}>", bonusParts[7]);
+                        }
+                        else if (includeCategories)
+                        {
+                            writerName = string.Format(" <{0}>", bonusParts[9]);
                         }
 
                         // Get the different parts of the bonus
@@ -663,10 +683,11 @@
         /// <param name="bonusCount">How many bonuses to read</param>
         /// <param name="bonusStartIndex">Bonus start number</param>
         /// <param name="includeWriterNames">If true, include writer names</param>
+        /// <param name="includeCategoryNames">If true, include category names</param>
         /// <param name="includeComments">If true, include comments</param>
         /// <param name="showNumber">If true, show the question number</param>
         /// <returns>Rtf text for VHSL bonuses</returns>
-        public static string GetVhslBonusText(List<string> columns, int columnStartIndex, int bonusCount, int bonusStartIndex, bool includeWriterNames, bool includeComments, bool showNumber)
+        public static string GetVhslBonusText(List<string> columns, int columnStartIndex, int bonusCount, int bonusStartIndex, bool includeWriterNames, bool includeCategoryNames, bool includeComments, bool showNumber)
         {
             StringBuilder builder = new StringBuilder();
             int bonusIndex = bonusStartIndex;
