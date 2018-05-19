@@ -652,7 +652,8 @@
                 else
                 {
                     builder.Append(@"\keep \keepn ");
-                    builder.Append(string.Format(@"{0}{1}\par\sb0\sa0\par\sb0\sa0 ", formattedIndex, columns[i]));
+                    builder.Append(GetFormattedText(string.Format(@"{0}{1} ", formattedIndex, columns[i]), true));
+                    builder.Append(@"\par\sb0\sa0\par\sb0\sa0 ");
                 }
 
                 bonusIndex++;
