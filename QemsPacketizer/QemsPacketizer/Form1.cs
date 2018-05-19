@@ -77,6 +77,7 @@ namespace QemsPacketizer
                     this.chkComments.Checked,
                     this.GetCommentFilters(),
                     this.chkWriterNames.Checked,
+                    this.chkCategories.Checked,
                     this.txtSetName.Text,
                     this.cmbFont.Text);
             }
@@ -103,6 +104,7 @@ namespace QemsPacketizer
                     this.chkComments.Checked,
                     this.GetCommentFilters(),
                     this.chkWriterNames.Checked,
+                    this.chkCategories.Checked,
                     this.txtSetName.Text,
                     this.cmbFont.Text);
             }
@@ -225,7 +227,7 @@ namespace QemsPacketizer
         {
             QuestionSet questionSet = new QuestionSet(QuestionSet.SetType.VHSL, this.txtQuestionInput.Text, Int32.Parse(txtPackets.Text));
             questionSet.LoadRealQuestions(txtQuestionInput.Text, QuestionSet.SetType.VHSL);
-            questionSet.OutputCategoryFiles(this.txtSetName.Text, this.cmbFont.Text, this.chkWriterNames.Checked, this.chkComments.Checked, this.GetCommentFilters(), this.txtOutputDir.Text, this.chkSeparateSubCategories.Checked);
+            questionSet.OutputCategoryFiles(this.txtSetName.Text, this.cmbFont.Text, this.chkWriterNames.Checked, this.chkCategories.Checked, this.chkComments.Checked, this.GetCommentFilters(), this.txtOutputDir.Text, this.chkSeparateSubCategories.Checked);
         }
 
         private void cmdFindNscBugs_Click(object sender, EventArgs e)
@@ -264,15 +266,17 @@ namespace QemsPacketizer
             this.chkScoresheet.Visible = true;
             this.cmdQuestionLength.Visible = true;
 
-            this.txtSetName.Text = "NASAT 2017";
-            this.txtLogoFile.Text = @"C:\Users\mbentley\Downloads\hsapq_logo.bmp";
-            this.txtQuestionInput.Text = @"C:\Users\mbentley\Downloads\packet2 (17).csv";
+            this.txtSetName.Text = "NSC 2018";
+            this.txtLogoFile.Text = @"C:\Users\mbentley\Pictures\PACE Logo H 2018.bmp";
+            this.txtQuestionInput.Text = @"C:\Users\mbentley\Downloads\packet2 (3).csv";
             this.chkScoresheet.Checked = false;
 
-            this.txtPackets.Text = "20";
-            this.chkComments.Checked = false;
+            this.cmbFont.Text = "Times New Roman";
+            this.txtPackets.Text = "24";
+            this.chkComments.Checked = true;
             this.chkWriterNames.Checked = true;
-            this.opNasat.Checked = true;
+            this.chkComments.Checked = true;
+            this.opNsc.Checked = true;
         }
 
         private void cmdQuestionLength_Click(object sender, EventArgs e)
