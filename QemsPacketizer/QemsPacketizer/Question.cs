@@ -105,7 +105,7 @@ namespace QemsPacketizer
                 {
                     if (QemsPacketTag.StartsWith("Round "))
                     {
-                        string justRound = QemsPacketTag.Substring(6);
+                        string justRound = QemsPacketTag.Substring(6, 2);
                         return Int32.Parse(justRound);
                     }
                     else

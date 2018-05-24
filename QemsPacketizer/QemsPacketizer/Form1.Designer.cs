@@ -70,12 +70,13 @@
             this.cmdQuestionLength = new System.Windows.Forms.Button();
             this.lblLength = new System.Windows.Forms.Label();
             this.chkCategories = new System.Windows.Forms.CheckBox();
+            this.cmdConvertOphirTemplate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cmdGeneratePackets
             // 
             this.cmdGeneratePackets.Location = new System.Drawing.Point(181, 553);
-            this.cmdGeneratePackets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmdGeneratePackets.Margin = new System.Windows.Forms.Padding(4);
             this.cmdGeneratePackets.Name = "cmdGeneratePackets";
             this.cmdGeneratePackets.Size = new System.Drawing.Size(160, 37);
             this.cmdGeneratePackets.TabIndex = 4;
@@ -89,7 +90,7 @@
             this.chkScoresheet.AutoSize = true;
             this.chkScoresheet.Enabled = false;
             this.chkScoresheet.Location = new System.Drawing.Point(397, 319);
-            this.chkScoresheet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkScoresheet.Margin = new System.Windows.Forms.Padding(4);
             this.chkScoresheet.Name = "chkScoresheet";
             this.chkScoresheet.Size = new System.Drawing.Size(183, 21);
             this.chkScoresheet.TabIndex = 6;
@@ -102,7 +103,7 @@
             this.chkDocx.Checked = true;
             this.chkDocx.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDocx.Location = new System.Drawing.Point(397, 288);
-            this.chkDocx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkDocx.Margin = new System.Windows.Forms.Padding(4);
             this.chkDocx.Name = "chkDocx";
             this.chkDocx.Size = new System.Drawing.Size(145, 21);
             this.chkDocx.TabIndex = 7;
@@ -112,7 +113,7 @@
             // txtQuestionInput
             // 
             this.txtQuestionInput.Location = new System.Drawing.Point(13, 34);
-            this.txtQuestionInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtQuestionInput.Margin = new System.Windows.Forms.Padding(4);
             this.txtQuestionInput.Name = "txtQuestionInput";
             this.txtQuestionInput.Size = new System.Drawing.Size(480, 22);
             this.txtQuestionInput.TabIndex = 0;
@@ -140,7 +141,7 @@
             // txtOutputDir
             // 
             this.txtOutputDir.Location = new System.Drawing.Point(16, 174);
-            this.txtOutputDir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtOutputDir.Margin = new System.Windows.Forms.Padding(4);
             this.txtOutputDir.Name = "txtOutputDir";
             this.txtOutputDir.Size = new System.Drawing.Size(480, 22);
             this.txtOutputDir.TabIndex = 2;
@@ -160,7 +161,7 @@
             // 
             this.txtTemplateInput.Enabled = false;
             this.txtTemplateInput.Location = new System.Drawing.Point(13, 82);
-            this.txtTemplateInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTemplateInput.Margin = new System.Windows.Forms.Padding(4);
             this.txtTemplateInput.Name = "txtTemplateInput";
             this.txtTemplateInput.Size = new System.Drawing.Size(480, 22);
             this.txtTemplateInput.TabIndex = 1;
@@ -170,7 +171,7 @@
             // 
             this.cmdGenerateTemplates.Enabled = false;
             this.cmdGenerateTemplates.Location = new System.Drawing.Point(13, 553);
-            this.cmdGenerateTemplates.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmdGenerateTemplates.Margin = new System.Windows.Forms.Padding(4);
             this.cmdGenerateTemplates.Name = "cmdGenerateTemplates";
             this.cmdGenerateTemplates.Size = new System.Drawing.Size(160, 37);
             this.cmdGenerateTemplates.TabIndex = 14;
@@ -194,7 +195,7 @@
             // 
             this.txtTemplates.Enabled = false;
             this.txtTemplates.Location = new System.Drawing.Point(156, 598);
-            this.txtTemplates.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTemplates.Margin = new System.Windows.Forms.Padding(4);
             this.txtTemplates.Name = "txtTemplates";
             this.txtTemplates.Size = new System.Drawing.Size(49, 22);
             this.txtTemplates.TabIndex = 16;
@@ -225,7 +226,7 @@
             // 
             this.opNsc.AutoSize = true;
             this.opNsc.Location = new System.Drawing.Point(17, 279);
-            this.opNsc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.opNsc.Margin = new System.Windows.Forms.Padding(4);
             this.opNsc.Name = "opNsc";
             this.opNsc.Size = new System.Drawing.Size(57, 21);
             this.opNsc.TabIndex = 19;
@@ -239,7 +240,7 @@
             this.opNasat.AutoSize = true;
             this.opNasat.Checked = true;
             this.opNasat.Location = new System.Drawing.Point(117, 279);
-            this.opNasat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.opNasat.Margin = new System.Windows.Forms.Padding(4);
             this.opNasat.Name = "opNasat";
             this.opNasat.Size = new System.Drawing.Size(66, 21);
             this.opNasat.TabIndex = 20;
@@ -253,7 +254,7 @@
             // 
             this.opVHSL.AutoSize = true;
             this.opVHSL.Location = new System.Drawing.Point(211, 279);
-            this.opVHSL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.opVHSL.Margin = new System.Windows.Forms.Padding(4);
             this.opVHSL.Name = "opVHSL";
             this.opVHSL.Size = new System.Drawing.Size(119, 21);
             this.opVHSL.TabIndex = 21;
@@ -276,7 +277,7 @@
             // txtLogoFile
             // 
             this.txtLogoFile.Location = new System.Drawing.Point(16, 223);
-            this.txtLogoFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLogoFile.Margin = new System.Windows.Forms.Padding(4);
             this.txtLogoFile.Name = "txtLogoFile";
             this.txtLogoFile.Size = new System.Drawing.Size(480, 22);
             this.txtLogoFile.TabIndex = 3;
@@ -288,7 +289,7 @@
             this.chkWriterNames.Checked = true;
             this.chkWriterNames.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkWriterNames.Location = new System.Drawing.Point(397, 347);
-            this.chkWriterNames.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkWriterNames.Margin = new System.Windows.Forms.Padding(4);
             this.chkWriterNames.Name = "chkWriterNames";
             this.chkWriterNames.Size = new System.Drawing.Size(116, 21);
             this.chkWriterNames.TabIndex = 24;
@@ -301,7 +302,7 @@
             this.chkComments.Checked = true;
             this.chkComments.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkComments.Location = new System.Drawing.Point(396, 405);
-            this.chkComments.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkComments.Margin = new System.Windows.Forms.Padding(4);
             this.chkComments.Name = "chkComments";
             this.chkComments.Size = new System.Drawing.Size(96, 21);
             this.chkComments.TabIndex = 25;
@@ -331,7 +332,7 @@
             // txtSetName
             // 
             this.txtSetName.Location = new System.Drawing.Point(16, 347);
-            this.txtSetName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSetName.Margin = new System.Windows.Forms.Padding(4);
             this.txtSetName.Name = "txtSetName";
             this.txtSetName.Size = new System.Drawing.Size(372, 22);
             this.txtSetName.TabIndex = 28;
@@ -354,7 +355,7 @@
             "Garamond",
             "Times New Roman"});
             this.cmbFont.Location = new System.Drawing.Point(63, 390);
-            this.cmbFont.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbFont.Margin = new System.Windows.Forms.Padding(4);
             this.cmbFont.Name = "cmbFont";
             this.cmbFont.Size = new System.Drawing.Size(325, 24);
             this.cmbFont.TabIndex = 30;
@@ -363,7 +364,7 @@
             // cmdCategoryCsv
             // 
             this.cmdCategoryCsv.Location = new System.Drawing.Point(13, 508);
-            this.cmdCategoryCsv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmdCategoryCsv.Margin = new System.Windows.Forms.Padding(4);
             this.cmdCategoryCsv.Name = "cmdCategoryCsv";
             this.cmdCategoryCsv.Size = new System.Drawing.Size(199, 37);
             this.cmdCategoryCsv.TabIndex = 31;
@@ -386,7 +387,7 @@
             // txtPackets
             // 
             this.txtPackets.Location = new System.Drawing.Point(363, 598);
-            this.txtPackets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPackets.Margin = new System.Windows.Forms.Padding(4);
             this.txtPackets.Name = "txtPackets";
             this.txtPackets.Size = new System.Drawing.Size(49, 22);
             this.txtPackets.TabIndex = 33;
@@ -396,7 +397,7 @@
             // cmdCategoryOutput
             // 
             this.cmdCategoryOutput.Location = new System.Drawing.Point(13, 455);
-            this.cmdCategoryOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmdCategoryOutput.Margin = new System.Windows.Forms.Padding(4);
             this.cmdCategoryOutput.Name = "cmdCategoryOutput";
             this.cmdCategoryOutput.Size = new System.Drawing.Size(160, 46);
             this.cmdCategoryOutput.TabIndex = 34;
@@ -407,7 +408,7 @@
             // txtComments
             // 
             this.txtComments.Location = new System.Drawing.Point(403, 487);
-            this.txtComments.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtComments.Margin = new System.Windows.Forms.Padding(4);
             this.txtComments.Name = "txtComments";
             this.txtComments.Size = new System.Drawing.Size(219, 22);
             this.txtComments.TabIndex = 35;
@@ -418,7 +419,7 @@
             this.chkSeparateSubCategories.Checked = true;
             this.chkSeparateSubCategories.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkSeparateSubCategories.Location = new System.Drawing.Point(181, 465);
-            this.chkSeparateSubCategories.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkSeparateSubCategories.Margin = new System.Windows.Forms.Padding(4);
             this.chkSeparateSubCategories.Name = "chkSeparateSubCategories";
             this.chkSeparateSubCategories.Size = new System.Drawing.Size(189, 21);
             this.chkSeparateSubCategories.TabIndex = 37;
@@ -437,7 +438,7 @@
             // cmdBrowse
             // 
             this.cmdBrowse.Location = new System.Drawing.Point(503, 34);
-            this.cmdBrowse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmdBrowse.Margin = new System.Windows.Forms.Padding(4);
             this.cmdBrowse.Name = "cmdBrowse";
             this.cmdBrowse.Size = new System.Drawing.Size(85, 23);
             this.cmdBrowse.TabIndex = 39;
@@ -448,7 +449,7 @@
             // cmdAdvancedMode
             // 
             this.cmdAdvancedMode.Location = new System.Drawing.Point(459, 564);
-            this.cmdAdvancedMode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmdAdvancedMode.Margin = new System.Windows.Forms.Padding(4);
             this.cmdAdvancedMode.Name = "cmdAdvancedMode";
             this.cmdAdvancedMode.Size = new System.Drawing.Size(160, 37);
             this.cmdAdvancedMode.TabIndex = 40;
@@ -460,7 +461,7 @@
             // 
             this.txtPreviousOutputFile.Enabled = false;
             this.txtPreviousOutputFile.Location = new System.Drawing.Point(13, 130);
-            this.txtPreviousOutputFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPreviousOutputFile.Margin = new System.Windows.Forms.Padding(4);
             this.txtPreviousOutputFile.Name = "txtPreviousOutputFile";
             this.txtPreviousOutputFile.Size = new System.Drawing.Size(480, 22);
             this.txtPreviousOutputFile.TabIndex = 41;
@@ -483,7 +484,7 @@
             this.chkRespectPacket.Checked = true;
             this.chkRespectPacket.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRespectPacket.Location = new System.Drawing.Point(400, 519);
-            this.chkRespectPacket.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkRespectPacket.Margin = new System.Windows.Forms.Padding(4);
             this.chkRespectPacket.Name = "chkRespectPacket";
             this.chkRespectPacket.Size = new System.Drawing.Size(219, 21);
             this.chkRespectPacket.TabIndex = 43;
@@ -493,7 +494,7 @@
             // cmdQuestionLength
             // 
             this.cmdQuestionLength.Location = new System.Drawing.Point(13, 640);
-            this.cmdQuestionLength.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmdQuestionLength.Margin = new System.Windows.Forms.Padding(4);
             this.cmdQuestionLength.Name = "cmdQuestionLength";
             this.cmdQuestionLength.Size = new System.Drawing.Size(160, 37);
             this.cmdQuestionLength.TabIndex = 44;
@@ -526,11 +527,24 @@
             this.chkCategories.Text = "Categories";
             this.chkCategories.UseVisualStyleBackColor = true;
             // 
+            // cmdConvertOphirTemplate
+            // 
+            this.cmdConvertOphirTemplate.Location = new System.Drawing.Point(501, 82);
+            this.cmdConvertOphirTemplate.Margin = new System.Windows.Forms.Padding(4);
+            this.cmdConvertOphirTemplate.Name = "cmdConvertOphirTemplate";
+            this.cmdConvertOphirTemplate.Size = new System.Drawing.Size(115, 33);
+            this.cmdConvertOphirTemplate.TabIndex = 47;
+            this.cmdConvertOphirTemplate.Text = "Convert Ophir";
+            this.cmdConvertOphirTemplate.UseVisualStyleBackColor = true;
+            this.cmdConvertOphirTemplate.Visible = false;
+            this.cmdConvertOphirTemplate.Click += new System.EventHandler(this.cmdConvertOphirTemplate_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(637, 692);
+            this.Controls.Add(this.cmdConvertOphirTemplate);
             this.Controls.Add(this.chkCategories);
             this.Controls.Add(this.lblLength);
             this.Controls.Add(this.cmdQuestionLength);
@@ -574,7 +588,7 @@
             this.Controls.Add(this.cmdGeneratePackets);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "QEMS2 Packetizer";
@@ -627,6 +641,7 @@
         private System.Windows.Forms.Button cmdQuestionLength;
         private System.Windows.Forms.Label lblLength;
         private System.Windows.Forms.CheckBox chkCategories;
+        private System.Windows.Forms.Button cmdConvertOphirTemplate;
     }
 }
 
