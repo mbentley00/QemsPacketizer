@@ -91,7 +91,8 @@ namespace QemsPacketizer
                 // Load the template file, replace the placeholders with actual questions
                 QuestionSet questionSet = new QuestionSet(this.setType, this.txtQuestionInput.Text, Int32.Parse(txtPackets.Text));
                 questionSet.LoadRealQuestions(txtQuestionInput.Text, this.setType);
-                questionSet.LoadTemplate(txtTemplateInput.Text, this.setType);
+                //questionSet.LoadTemplate(txtTemplateInput.Text, this.setType);
+                questionSet.LoadOphirTemplate(txtTemplateInput.Text);
                 string outputFile = questionSet.WriteOutput(this.txtOutputDir.Text, this.setType);
                 questionSet.WriteCategoriesToCsv(this.txtOutputDir.Text, this.setType);
 
@@ -247,6 +248,7 @@ namespace QemsPacketizer
 
         private void cmdAdvancedMode_Click(object sender, EventArgs e)
         {
+            this.cmdConvertOphirTemplate.Visible = true;
             this.opNasat.Visible = true;
             this.opNsc.Visible = true;
             this.opVHSL.Visible = true;
@@ -268,8 +270,9 @@ namespace QemsPacketizer
 
             this.txtSetName.Text = "NSC 2018";
             this.txtLogoFile.Text = @"C:\Users\mbentley\Pictures\PACE Logo H 2018.bmp";
-            this.txtQuestionInput.Text = @"C:\Users\mbentley\Downloads\packet2 (3).csv";
+            this.txtQuestionInput.Text = @"C:\Users\mbentley\Downloads\packet2 (4).csv";
             this.chkScoresheet.Checked = false;
+            this.txtTemplateInput.Text = @"C:\Users\mbentley\Documents\2018 NSC Distribution_formatted.csv";
 
             this.cmbFont.Text = "Times New Roman";
             this.txtPackets.Text = "24";
@@ -298,6 +301,47 @@ namespace QemsPacketizer
             }
 
             this.lblLength.Text = $"Tossup Length: {(int)tossupLengths.Average()}, Bonus Length: {(int)bonusLengths.Average()}"; 
+        }
+
+        private void cmdConvertOphirTemplate_Click(object sender, EventArgs e)
+        {
+            string outputFile = this.txtTemplateInput.Text.Replace(".csv", "_formatted.csv");
+            using (StreamWriter writer = new StreamWriter(outputFile))
+            {
+                List<string> tossups = new List<string>();
+                List<string> bonuses = new List<string>();
+                for (int i = 1; i <= 21; i++)
+                {
+                    tossups.Add($"Tossup {i}");
+                    bonuses.Add($"Bonus {i}");
+                }
+
+                writer.WriteLine($"{string.Join(",", tossups)},{string.Join(",", bonuses)}");
+
+                tossups = new List<string>();
+                bonuses = new List<string>();
+                bool isTossupLine = true;
+                foreach (var line in File.ReadAllLines(this.txtTemplateInput.Text))
+                {
+                    if (!string.IsNullOrWhiteSpace(line))
+                    {
+                        string[] columns = line.Split(',');
+                        if (isTossupLine)
+                        {
+                            tossups.AddRange(columns);
+                            isTossupLine = false;
+                        }
+                        else
+                        {
+                            bonuses.AddRange(columns);
+                            isTossupLine = true;
+                            writer.WriteLine($"{string.Join(",", tossups)},{string.Join(",", bonuses)}");
+                            tossups = new List<string>();
+                            bonuses = new List<string>();
+                        }
+                    }
+                }
+            }
         }
     }
 }

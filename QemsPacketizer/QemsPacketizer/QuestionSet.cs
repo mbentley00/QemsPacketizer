@@ -296,9 +296,9 @@
                     List<string> columns = ReadCSVLine(line);
                     if (columns.Count >= 4)
                     {
-                        string category = columns[0];
-                        string subCategory = columns[1];
-                        string formattedName = columns[0] + " - " + columns[1];
+                        string category = columns[0].Replace("\"", "");
+                        string subCategory = columns[1].Replace("\"", "");
+                        string formattedName = category + " - " + subCategory;
                         int tossupCount = Int32.Parse(columns[2]);
                         int bonusCount = Int32.Parse(columns[3]);
 
@@ -1439,12 +1439,12 @@
                 {
                     extraPacket.Tossups.Add(tossup);
                 }
-            
+
                 foreach (var bonus in this.UnassignedBonuses)
                 {
                     extraPacket.Bonuses.Add(bonus);
                 }
-            
+
                 this.Packets.Add(extraPacket);
             }
         }
@@ -1604,6 +1604,56 @@
             questions.Add(bonus);
 
             return questions;
+        }
+
+        public void LoadOphirTemplate(string inputFile)
+        {
+            int packet = 0;
+            int totalTossupCount = 21;
+            int regulationTossupCount = 20;
+            int totalBonusCount = 21;
+            int regulationBonusCount = 20;
+
+            foreach (string line in File.ReadAllLines(inputFile).Skip(1))
+            {
+                Packet curPacket = this.Packets[packet];
+                List<string> cols = ReadCSVLine(line);
+
+                for (int i = 0; i < totalTossupCount; i++)
+                {
+                    // Find the tossup with this category
+                    string category = cols[i];
+                    Question tossup = GetUnassignedTossup(category, packetToMatch: curPacket.QemsPacketName);
+
+                    if (i < regulationTossupCount)
+                    {
+                        curPacket.Tossups.Add(tossup);
+                    }
+                    else
+                    {
+                        curPacket.TiebreakerTossups.Add(tossup);
+                    }
+                }
+
+                for (int i = totalTossupCount; i < cols.Count; i++)
+                {
+                    // Find the bonus of this name
+                    string category = cols[i];
+                    Question bonus = GetUnassignedBonus(category, packetToMatch: curPacket.QemsPacketName);
+
+                    if (i < totalTossupCount + regulationBonusCount)
+                    {
+                        curPacket.Bonuses.Add(bonus);
+                    }
+                    else
+                    {
+                        curPacket.TiebreakerBonuses.Add(bonus);
+                    }
+                }
+
+                packet++;
+            }
+
         }
 
         /// <summary>
@@ -1789,6 +1839,8 @@
                     {
                         tossupCategoryIndex.Add(category, 1);
                     }
+
+                    category = category.Replace("\"", "");
 
                     int index = tossupCategoryIndex[category];
 
@@ -2023,7 +2075,7 @@
             {
                 Console.WriteLine(line);
             }
-            
+
             string[] cols = line.Split(',');
             List<string> formattedCols = new List<string>();
             bool isEscapeText = false;
