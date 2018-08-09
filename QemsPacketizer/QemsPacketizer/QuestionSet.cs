@@ -296,9 +296,9 @@
                     List<string> columns = ReadCSVLine(line);
                     if (columns.Count >= 4)
                     {
-                        string category = columns[0];
-                        string subCategory = columns[1];
-                        string formattedName = columns[0] + " - " + columns[1];
+                        string category = columns[0].Replace("\"", "");
+                        string subCategory = columns[1].Replace("\"", "");
+                        string formattedName = category + " - " + subCategory;
                         int tossupCount = Int32.Parse(columns[2]);
                         int bonusCount = Int32.Parse(columns[3]);
 
@@ -1839,6 +1839,8 @@
                     {
                         tossupCategoryIndex.Add(category, 1);
                     }
+
+                    category = category.Replace("\"", "");
 
                     int index = tossupCategoryIndex[category];
 
