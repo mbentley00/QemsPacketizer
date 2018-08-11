@@ -32,6 +32,8 @@ namespace QemsPacketizer
             this.opVHSL.Checked = true;
             this.setType = QuestionSet.SetType.VHSL;
             this.chkWriterNames.Checked = true;
+
+            this.txtQuestionInput.Text = @"C:\Users\mbentley\Downloads\packet2 (13) (1).csv";
         }
 
         private void cmdGeneratePackets_Click(object sender, EventArgs e)
@@ -270,9 +272,9 @@ namespace QemsPacketizer
 
             this.txtSetName.Text = "NSC 2018";
             this.txtLogoFile.Text = @"C:\Users\mbentley\Pictures\PACE Logo H 2018.bmp";
-            this.txtQuestionInput.Text = @"C:\Users\mbentley\Downloads\packet2 (4).csv";
+            this.txtQuestionInput.Text = @"C:\Users\mbentley\Downloads\packet2 (5).csv";
             this.chkScoresheet.Checked = false;
-            this.txtTemplateInput.Text = @"C:\Users\mbentley\Documents\2018 NSC Distribution_formatted.csv";
+            this.txtTemplateInput.Text = @"C:\Users\mbentley\Documents\ophir_2018_formatted.csv";
 
             this.cmbFont.Text = "Times New Roman";
             this.txtPackets.Text = "24";
