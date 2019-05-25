@@ -949,18 +949,6 @@
 
         public void CreateNSCPackets()
         {
-            // These are limits to how many questions we can choose for cases when we cross-pollinate categories
-            // The idea is that we don't select so many British lit questions that world lit gets put into TB
-            //int biochemBioTULimit = 4;
-            //int biochemBioBoLimit = 4;
-            //int biochemBioTU = 0;
-            //int biochemBioBo = 0;
-            //
-            //int worldLitOtherTULimit = 6;
-            //int worldLitOtherBoLimit = 7;
-            //int worldLitOtherTU = 0;
-            //int worldLitOtherBo = 0;
-
             // Create packets for all regular rounds
             foreach (Packet packet in this.Packets)
             {
@@ -995,79 +983,6 @@
                     tossups.Add(GetUnassignedTossup(Category.WorldLiterature, packetToMatch: packet.QemsPacketName));
                     bonuses.Add(GetUnassignedBonus(Category.WorldLiterature, packetToMatch: packet.QemsPacketName));
                 }
-
-                //// TODO: We really need to create a separate max pool of am/brit lit so we don't over dip
-                //Category worldLit = new Category(Category.WorldLiterature, 0.75);
-                //Category americanLit = new Category(Category.AmericanLiterature, 0.12);
-                //Category britishList = new Category(Category.BritishLiterature, 0.12);
-                //List<Category> otherLitCats = new List<Category>();
-                //otherLitCats.Add(worldLit);
-                //otherLitCats.Add(americanLit);
-                //otherLitCats.Add(britishList);
-                //
-                //// We've run out of other stuff to select, always add a world lit tossup
-                //if (worldLitOtherTU >= worldLitOtherTULimit)
-                //{
-                //    tossups.Add(GetUnassignedTossup(Category.WorldLiterature, packetToMatch: packet.QemsPacketName));
-                //    if (worldLitOtherBo >= worldLitOtherBoLimit)
-                //    {
-                //        bonuses.Add(GetUnassignedBonus(Category.WorldLiterature, packetToMatch: packet.QemsPacketName));
-                //    }
-                //    else
-                //    {
-                //        Question otherLitBonus = GetUnassignedBonus(otherLitCats, packetToMatch: packet.QemsPacketName);
-                //        bonuses.Add(otherLitBonus);
-                //
-                //        if (otherLitBonus.Category.Name != Category.WorldLiterature)
-                //        {
-                //            worldLitOtherBo++;
-                //        }
-                //    }
-                //}
-                //else
-                //{
-                //    Question otherLitTossup = GetUnassignedTossup(otherLitCats, packetToMatch: packet.QemsPacketName);
-                //    tossups.Add(otherLitTossup);
-                //    if (otherLitTossup.Category.Name != Category.WorldLiterature)
-                //    {
-                //        worldLitOtherTU++;
-                //    }
-                //
-                //    if (otherLitTossup.Category.Name != Category.WorldLiterature || worldLitOtherBo >= worldLitOtherBoLimit)
-                //    {
-                //        // Always add a world lit bonus in this case
-                //        Question otherLitBonus = null;
-                //        try
-                //        {
-                //            otherLitBonus = GetUnassignedBonus(Category.WorldLiterature, packetToMatch: packet.QemsPacketName);
-                //        }
-                //        catch (Exception)
-                //        {
-                //        }
-                //
-                //        if (otherLitBonus == null)
-                //        {
-                //            otherLitBonus = GetUnassignedBonus(otherLitCats, packetToMatch: packet.QemsPacketName);
-                //            if (otherLitBonus == null)
-                //            {
-                //                throw new Exception("Other Lit");
-                //            }
-                //        }
-                //
-                //        bonuses.Add(otherLitBonus);
-                //    }
-                //    else
-                //    {
-                //        // Pick whether to add a world lit bonus or not
-                //        Question otherLitBonus = GetUnassignedBonus(otherLitCats, packetToMatch: packet.QemsPacketName);
-                //        bonuses.Add(otherLitBonus);
-                //
-                //        if (otherLitBonus.Category.Name != Category.WorldLiterature)
-                //        {
-                //            worldLitOtherBo++;
-                //        }
-                //    }
-                //}
 
                 // Find 1 am hist
                 tossups.Add(GetUnassignedTossup(Category.AmericanHistory, packetToMatch: packet.QemsPacketName));
@@ -1106,8 +1021,6 @@
                 otherSciCats.Add(compSci);
                 otherSciCats.Add(earthSci);
                 otherSciCats.Add(astro);
-
-
 
                 if (packet.Round == 5 || packet.Round == 13 || packet.Round == 19)
                 {
@@ -1151,143 +1064,6 @@
                     bonuses.Add(bonus1);
                     otherSciCats.Remove(bonus1.Category);
                 }
-
-                // TODO: This isn't right
-                //Category chemistry = new Category(Category.Chemistry, 0.875);
-                //
-                //
-                //List<Category> biochemCats = new List<Category>();
-                //biochemCats.Add(chemistry);
-                //if (biochemBioTU >= biochemBioTULimit)
-                //{
-                //    tossups.Add(GetUnassignedTossup(Category.Chemistry, packetToMatch: packet.QemsPacketName));
-                //    if (biochemBioBo >= biochemBioBoLimit)
-                //    {
-                //        bonuses.Add(GetUnassignedBonus(Category.Chemistry, packetToMatch: packet.QemsPacketName));
-                //    }
-                //    else
-                //    {
-                //        Question bioChemBonus = null;
-                //        try
-                //        {
-                //            bioChemBonus = GetUnassignedBonus(biochemCats, packetToMatch: packet.QemsPacketName);
-                //        }
-                //        catch (Exception)
-                //        {
-                //        }
-                //
-                //        if (bioChemBonus == null)
-                //        {
-                //            throw new Exception("biochem");
-                //        }
-                //
-                //        bonuses.Add(bioChemBonus);
-                //        if (bioChemBonus.Category.Name != Category.Chemistry)
-                //        {
-                //            biochemBioBo++;
-                //        }
-                //    }
-                //}
-                //else
-                //{
-                //    Question bioChemTossup = GetUnassignedTossup(biochemCats, packetToMatch: packet.QemsPacketName);
-                //    tossups.Add(bioChemTossup);
-                //    if (bioChemTossup.Category.Name != Category.Chemistry)
-                //    {
-                //        biochemBioTU++;
-                //    }
-                //
-                //    if (bioChemTossup.Category.Name != Category.Chemistry || biochemBioBo >= biochemBioBoLimit)
-                //    {
-                //        // Always add a chem bonus in this case
-                //        Question bioChemBonus = null;
-                //        try
-                //        {
-                //            bioChemBonus = GetUnassignedBonus(Category.Chemistry, packetToMatch: packet.QemsPacketName);
-                //        }
-                //        catch (Exception)
-                //        {
-                //        }
-                //
-                //        if (bioChemBonus == null)
-                //        {
-                //            bioChemBonus = GetUnassignedBonus(biochemCats, packetToMatch: packet.QemsPacketName);
-                //            if (bioChemBonus == null)
-                //            {
-                //                throw new Exception("Biochem");
-                //            }
-                //        }
-                //
-                //        bonuses.Add(bioChemBonus);
-                //    }
-                //    else
-                //    {
-                //        Question bioChemBonus = GetUnassignedBonus(biochemCats, packetToMatch: packet.QemsPacketName);
-                //        bonuses.Add(bioChemBonus);
-                //        if (bioChemBonus.Category.Name != Category.Chemistry)
-                //        {
-                //            biochemBioBo++;
-                //        }
-                //    }
-                //}
-                //
-                //// Find 1 other sci
-                //// Maybe we remove the other sci we found from the possible bonus
-                //Category math = new Category(Category.Math, 0.5);
-                //Category compSci = new Category(Category.ComputerScience, 0.18);
-                //Category earthSci = new Category(Category.EarthScience, 0.16);
-                //Category astro = new Category(Category.Astronomy, 0.16);
-                //List<Category> otherSciCats = new List<Category>();
-                //otherSciCats.Add(math);
-                //otherSciCats.Add(compSci);
-                //otherSciCats.Add(earthSci);
-                //otherSciCats.Add(astro);
-                //Question otherSciTossup = GetUnassignedTossup(otherSciCats, packetToMatch: packet.QemsPacketName);
-                //tossups.Add(otherSciTossup);
-                //Question otherSciBonus = null;
-                //if (otherSciTossup.Category.Name != Category.Math)
-                //{
-                //    try
-                //    {
-                //        otherSciBonus = GetUnassignedBonus(Category.Math, packetToMatch: packet.QemsPacketName);
-                //    }
-                //    catch (Exception)
-                //    {
-                //    }
-                //
-                //    if (otherSciBonus == null)
-                //    {
-                //        otherSciBonus = GetUnassignedBonus(otherSciCats, packetToMatch: packet.QemsPacketName);
-                //    }
-                //}
-                //else
-                //{
-                //    otherSciCats.Remove(math);
-                //
-                //    try
-                //    {
-                //        otherSciBonus = GetUnassignedBonus(otherSciCats, packetToMatch: packet.QemsPacketName);
-                //    }
-                //    catch (Exception)
-                //    {
-                //    }
-                //}
-                //
-                //if (otherSciBonus == null)
-                //{
-                //    otherSciCats = new List<Category>();
-                //    otherSciCats.Add(math);
-                //    otherSciCats.Add(compSci);
-                //    otherSciCats.Add(earthSci);
-                //    otherSciCats.Add(astro);
-                //    otherSciBonus = GetUnassignedBonus(otherSciCats, packetToMatch: packet.QemsPacketName);
-                //    if (otherSciBonus == null)
-                //    {
-                //        throw new Exception("Other sci");
-                //    }
-                //}
-                //
-                //bonuses.Add(otherSciBonus);
 
                 // Find 1 painting
                 tossups.Add(GetUnassignedTossup(Category.Painting, packetToMatch: packet.QemsPacketName));
@@ -1525,18 +1301,22 @@
             // Output any leftover files to an extra packet
             if (this.UnassignedBonuses.Count > 0 || this.UnassignedTossups.Count > 0)
             {
-                Packet extraPacket = new Packet(this.Packets.Count + 1);
+                //Packet extraPacket = new Packet(this.Packets.Count + 1);
                 foreach (var tossup in this.UnassignedTossups)
                 {
-                    extraPacket.Tossups.Add(tossup);
+                    this.ExtraTossups.Add(tossup);
+
+                    //extraPacket.Tossups.Add(tossup);
                 }
 
                 foreach (var bonus in this.UnassignedBonuses)
                 {
-                    extraPacket.Bonuses.Add(bonus);
+                    this.ExtraBonuses.Add(bonus);
+
+                    //extraPacket.Bonuses.Add(bonus);
                 }
 
-                this.Packets.Add(extraPacket);
+                //this.Packets.Add(extraPacket);
             }
         }
 
@@ -2380,6 +2160,8 @@
                     writer.WriteLine();
                 }
 
+                writer.Flush();
+
                 if (this.ExtraTossups.Count > 0 || this.ExtraBonuses.Count > 0)
                 {
                     var category = new Category("Placeholder", 0);
@@ -2458,6 +2240,7 @@
 
                         writer.Write(string.Join(",", tossupsToWrite));
                         writer.Write(",");
+                        writer.Flush();
                         writer.Write(string.Join(",", bonusesToWrite));
                         writer.WriteLine();
                     }
