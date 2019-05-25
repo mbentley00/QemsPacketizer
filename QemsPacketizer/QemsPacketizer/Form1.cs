@@ -270,11 +270,11 @@ namespace QemsPacketizer
             this.chkScoresheet.Visible = true;
             this.cmdQuestionLength.Visible = true;
 
-            this.txtSetName.Text = "NSC 2018";
+            this.txtSetName.Text = "NSC 2019";
             this.txtLogoFile.Text = @"C:\Users\mbentley\Pictures\PACE Logo H 2018.bmp";
-            this.txtQuestionInput.Text = @"C:\Users\mbentley\Downloads\packet2 (5).csv";
+            this.txtQuestionInput.Text = @"C:\Users\mbentley\Downloads\packet2 (16).csv";
             this.chkScoresheet.Checked = false;
-            this.txtTemplateInput.Text = @"C:\Users\mbentley\Documents\ophir_2018_formatted.csv";
+            this.txtTemplateInput.Text = @"";
 
             this.cmbFont.Text = "Times New Roman";
             this.txtPackets.Text = "24";
