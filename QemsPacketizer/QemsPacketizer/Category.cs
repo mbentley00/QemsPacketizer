@@ -176,46 +176,46 @@
         public const string AmericanLiterature = "Literature - American";
         public const string BritishLiterature = "Literature - British";
         public const string EuropeanLiterature = "Literature - European";
-        public const string WorldLiterature = "Literature - World";
+        public const string WorldLiterature = "Literature - World and Miscellaneous";
 
         public const string History = "History";
         public const string AmericanHistory = "History - American";
         public const string EuropeanHistory = "History - European";
         public const string WorldHistory = "History - World";
+        public const string CrossHistory = "History - Cross, Historiography, and Miscellaneous";
 
         public const string Science = "Science";
         public const string Biology = "Science - Biology";
         public const string Chemistry = "Science - Chemistry";
         public const string Physics = "Science - Physics";
-        public const string OtherScience = "Science - Other";
+        public const string OtherScience = "Science - Engineering and Miscellaneous";
         public const string Math = "Science - Math";
         public const string ComputerScience = "Science - Computer Science";
-        public const string EarthScience = "Science - Earth Science";
+        public const string EarthScience = "Science - Earth";
         public const string Astronomy = "Science - Astronomy";
 
         public const string RMP = "RMP";
-        public const string Religion = "RMP - Religion";
-        public const string Christianity = "RMP - Bible/Christianity";
+        public const string JudeoChristian = "RMP - Judeo-Christian, Bible";
         public const string OtherReligion = "RMP - Other Religion";
 
         public const string Myth = "RMP - Myth";
-        public const string GrecoRomanMyth = "RMP - Greco-Roman Myth";
-        public const string OtherMyth = "RMP - Other Myth";
+        public const string GrecoRomanMyth = "RMP - Greco-Roman Mythology";
+        public const string OtherMyth = "RMP - World Mythology";
         public const string Philosophy = "RMP - Philosophy";
 
-        public const string Arts = "Arts";
-        public const string VisualArts = "Arts - Visual";
-        public const string AudioArts = "Arts - Audio";
-        public const string Painting = "Arts - Painting";
-        public const string Music = "Arts - Music";
-        public const string Photography = "Arts - Photography";
-        public const string Sculpture = "Arts - Sculpture";
-        public const string Opera = "Arts - Opera";
-        public const string Ballet = "Arts - Ballet/Dance";
-        public const string Jazz = "Arts - Jazz";
-        public const string MiscArts = "Arts - Misc";
-        public const string Film = "Arts - Film";
-        public const string Architecture = "Arts - Architecture";
+        public const string Arts = "Fine Arts";
+        public const string VisualArts = "Fine Arts - Visual";
+        public const string AudioArts = "Fine Arts - Audio";
+        public const string Painting = "Fine Arts - Painting";
+        public const string Music = "Fine Arts - Music";
+        public const string Photography = "Fine Arts - Photography";
+        public const string Sculpture = "Fine Arts - Sculpture";
+        public const string Opera = "Fine Arts - Opera";
+        public const string Ballet = "Fine Arts - Ballet/Dance";
+        public const string Jazz = "Fine Arts - Jazz";
+        public const string MiscArts = "Fine Arts - Miscellaneous";
+        public const string Film = "Fine Arts - Film";
+        public const string Architecture = "Fine Arts - Architecture";
 
         public const string SocialScience = "Social Science";
         public const string Psychology = "Social Science - Psychology";
@@ -231,10 +231,10 @@
         public const string WorldGeography = "Geography - World";
 
         public const string CurrentEvents = "Current Events";
-        public const string USCurrentEvents = "Current Events - United States";
+        public const string USCurrentEvents = "Current Events - U.S.";
         public const string ForeignCurrentEvents = "Current Events - Foreign";
 
-        public const string MixedOther = "Mixed/Other/General Knowledge - Mixed/Other/General Knowledge";
+        public const string MixedOther = "Other - Other Academic and General Knowledge";
 
         public string Name { get; set; }
 
