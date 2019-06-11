@@ -69,7 +69,7 @@ namespace QemsPacketizer
 
         public void Randomize(Random random)
         {
-            // Split into first 10 and last 10
+            // Split into quarters
 
             int[] positions = new int[20];
 
@@ -79,78 +79,130 @@ namespace QemsPacketizer
             availableTossups.AddRange(this.Tossups);
             availableBonuses.AddRange(this.Bonuses);
 
+            List<Question> firstQuarterTossups = new List<Question>();
+            List<Question> firstQuarterBonuses = new List<Question>();
+
+            List<Question> secondQuarterTossups = new List<Question>();
+            List<Question> secondQuarterBonuses = new List<Question>();
+
+            List<Question> thirdQuarterTossups = new List<Question>();
+            List<Question> thirdQuarterBonuses = new List<Question>();
+
+            List<Question> fourthQuarterTossups = new List<Question>();
+            List<Question> fourthQuarterBonuses = new List<Question>();
+
             List<Question> firstHalfTossups = new List<Question>();
             List<Question> firstHalfBonuses = new List<Question>();
-
             List<Question> secondHalfTossups = new List<Question>();
             List<Question> secondHalfBonuses = new List<Question>();
 
-            firstHalfTossups.Add(GetQuestionInParentCategory(availableTossups, Category.Literature, random));
-            firstHalfTossups.Add(GetQuestionInParentCategory(availableTossups, Category.Literature, random));
-            firstHalfTossups.Add(GetQuestionInParentCategory(availableTossups, Category.History, random));
-            firstHalfTossups.Add(GetQuestionInParentCategory(availableTossups, Category.History, random));
-            firstHalfTossups.Add(GetQuestionInParentCategory(availableTossups, Category.Science, random));
-            firstHalfTossups.Add(GetQuestionInParentCategory(availableTossups, Category.Science, random));
-
-            // We want 1 RMP and 1 Arts tossup guaranteed.  Get them at once for first half / second half to not run out
+            // Get 1/1 art and 1/1 RMP to guarantee into each half
             firstHalfTossups.Add(GetQuestionInParentCategory(availableTossups, Category.Arts, random));
             firstHalfTossups.Add(GetQuestionInParentCategory(availableTossups, Category.RMP, random));
             secondHalfTossups.Add(GetQuestionInParentCategory(availableTossups, Category.Arts, random));
             secondHalfTossups.Add(GetQuestionInParentCategory(availableTossups, Category.RMP, random));
 
-            // The other 2 can be from any category
-            firstHalfTossups.Add(GetNonLitHistSciQuestion(availableTossups, random));
-            firstHalfTossups.Add(GetNonLitHistSciQuestion(availableTossups, random));
-
-            firstHalfBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.Literature, random));
-            firstHalfBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.Literature, random));
-            firstHalfBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.History, random));
-            firstHalfBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.History, random));
-            firstHalfBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.Science, random));
-            firstHalfBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.Science, random));
-
-            // Get the arts and RMP at once to not run out
             firstHalfBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.Arts, random));
             firstHalfBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.RMP, random));
             secondHalfBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.Arts, random));
             secondHalfBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.RMP, random));
 
+            // Get any non-major question for the rest
+            firstHalfTossups.Add(GetNonLitHistSciQuestion(availableTossups, random));
+            firstHalfTossups.Add(GetNonLitHistSciQuestion(availableTossups, random));
             firstHalfBonuses.Add(GetNonLitHistSciQuestion(availableBonuses, random));
             firstHalfBonuses.Add(GetNonLitHistSciQuestion(availableBonuses, random));
 
-            firstHalfTossups.Shuffle();
-            firstHalfBonuses.Shuffle();
-
-            secondHalfTossups.Add(GetQuestionInParentCategory(availableTossups, Category.Literature, random));
-            secondHalfTossups.Add(GetQuestionInParentCategory(availableTossups, Category.Literature, random));
-            secondHalfTossups.Add(GetQuestionInParentCategory(availableTossups, Category.History, random));
-            secondHalfTossups.Add(GetQuestionInParentCategory(availableTossups, Category.History, random));
-            secondHalfTossups.Add(GetQuestionInParentCategory(availableTossups, Category.Science, random));
-            secondHalfTossups.Add(GetQuestionInParentCategory(availableTossups, Category.Science, random));
             secondHalfTossups.Add(GetNonLitHistSciQuestion(availableTossups, random));
             secondHalfTossups.Add(GetNonLitHistSciQuestion(availableTossups, random));
-
-            secondHalfBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.Literature, random));
-            secondHalfBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.Literature, random));
-            secondHalfBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.History, random));
-            secondHalfBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.History, random));
-            secondHalfBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.Science, random));
-            secondHalfBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.Science, random));
             secondHalfBonuses.Add(GetNonLitHistSciQuestion(availableBonuses, random));
             secondHalfBonuses.Add(GetNonLitHistSciQuestion(availableBonuses, random));
 
-            secondHalfTossups.Shuffle();
-            secondHalfBonuses.Shuffle();
+            // Populate quarters with 3 major categories and 2 minor
+            firstQuarterTossups.Add(GetQuestionInParentCategory(availableTossups, Category.Literature, random));
+            firstQuarterTossups.Add(GetQuestionInParentCategory(availableTossups, Category.History, random));
+            firstQuarterTossups.Add(GetQuestionInParentCategory(availableTossups, Category.Science, random));
+            firstQuarterTossups.Add(GetQuestionFromList(firstHalfTossups, random));
+            firstQuarterTossups.Add(GetQuestionFromList(firstHalfTossups, random));
 
-            // If tossup 10 is same category as tossup 11, shuffle to avoid clumps
-            while (secondHalfTossups[0].Category.ParentCategoryName == firstHalfTossups[9].Category.ParentCategoryName)
+            firstQuarterBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.Literature, random));
+            firstQuarterBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.History, random));
+            firstQuarterBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.Science, random));
+            firstQuarterBonuses.Add(GetQuestionFromList(firstHalfBonuses, random));
+            firstQuarterBonuses.Add(GetQuestionFromList(firstHalfBonuses, random));
+
+            firstQuarterBonuses.Shuffle();
+
+            secondQuarterTossups.Add(GetQuestionInParentCategory(availableTossups, Category.Literature, random));
+            secondQuarterTossups.Add(GetQuestionInParentCategory(availableTossups, Category.History, random));
+            secondQuarterTossups.Add(GetQuestionInParentCategory(availableTossups, Category.Science, random));
+            secondQuarterTossups.Add(GetQuestionFromList(firstHalfTossups, random));
+            secondQuarterTossups.Add(GetQuestionFromList(firstHalfTossups, random));
+
+            secondQuarterBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.Literature, random));
+            secondQuarterBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.History, random));
+            secondQuarterBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.Science, random));
+            secondQuarterBonuses.Add(GetQuestionFromList(firstHalfBonuses, random));
+            secondQuarterBonuses.Add(GetQuestionFromList(firstHalfBonuses, random));
+
+            secondQuarterTossups.Shuffle();
+            while (secondQuarterTossups[0].Category.ParentCategoryName == firstQuarterTossups[firstQuarterTossups.Count -1].Category.ParentCategoryName)
             {
-                secondHalfTossups.Shuffle();
+                secondQuarterTossups.Shuffle();
             }
 
-            while (secondHalfBonuses[0].Category.ParentCategoryName == firstHalfBonuses[9].Category.ParentCategoryName)
+            secondQuarterBonuses.Shuffle();
+            while (secondQuarterBonuses[0].Category.ParentCategoryName == firstQuarterBonuses[firstQuarterBonuses.Count - 1].Category.ParentCategoryName)
             {
-                secondHalfBonuses.Shuffle();
+                secondQuarterBonuses.Shuffle();
+            }
+
+            thirdQuarterTossups.Add(GetQuestionInParentCategory(availableTossups, Category.Literature, random));
+            thirdQuarterTossups.Add(GetQuestionInParentCategory(availableTossups, Category.History, random));
+            thirdQuarterTossups.Add(GetQuestionInParentCategory(availableTossups, Category.Science, random));
+            thirdQuarterTossups.Add(GetQuestionFromList(secondHalfTossups, random));
+            thirdQuarterTossups.Add(GetQuestionFromList(secondHalfTossups, random));
+
+            thirdQuarterBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.Literature, random));
+            thirdQuarterBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.History, random));
+            thirdQuarterBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.Science, random));
+            thirdQuarterBonuses.Add(GetQuestionFromList(secondHalfBonuses, random));
+            thirdQuarterBonuses.Add(GetQuestionFromList(secondHalfBonuses, random));
+
+            thirdQuarterTossups.Shuffle();
+            while (thirdQuarterTossups[0].Category == secondQuarterTossups[secondQuarterTossups.Count - 1].Category)
+            {
+                thirdQuarterTossups.Shuffle();
+            }
+
+            thirdQuarterBonuses.Shuffle();
+            while (thirdQuarterBonuses[0].Category.ParentCategoryName == secondQuarterBonuses[secondQuarterBonuses.Count - 1].Category.ParentCategoryName)
+            {
+                thirdQuarterBonuses.Shuffle();
+            }
+
+            fourthQuarterTossups.Add(GetQuestionInParentCategory(availableTossups, Category.Literature, random));
+            fourthQuarterTossups.Add(GetQuestionInParentCategory(availableTossups, Category.History, random));
+            fourthQuarterTossups.Add(GetQuestionInParentCategory(availableTossups, Category.Science, random));
+            fourthQuarterTossups.Add(GetQuestionFromList(secondHalfTossups, random));
+            fourthQuarterTossups.Add(GetQuestionFromList(secondHalfTossups, random));
+
+            fourthQuarterBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.Literature, random));
+            fourthQuarterBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.History, random));
+            fourthQuarterBonuses.Add(GetQuestionInParentCategory(availableBonuses, Category.Science, random));
+            fourthQuarterBonuses.Add(GetQuestionFromList(secondHalfBonuses, random));
+            fourthQuarterBonuses.Add(GetQuestionFromList(secondHalfBonuses, random));
+
+            fourthQuarterTossups.Shuffle();
+            while (fourthQuarterTossups[0].Category == thirdQuarterTossups[thirdQuarterTossups.Count - 1].Category)
+            {
+                fourthQuarterTossups.Shuffle();
+            }
+
+            fourthQuarterBonuses.Shuffle();
+            while (fourthQuarterBonuses[0].Category.ParentCategoryName == thirdQuarterBonuses[thirdQuarterBonuses.Count - 1].Category.ParentCategoryName)
+            {
+                fourthQuarterBonuses.Shuffle();
             }
 
             // Tiebreakers
@@ -158,12 +210,23 @@ namespace QemsPacketizer
             this.TiebreakerBonuses.Shuffle();
 
             this.Tossups = new List<Question>();
-            this.Tossups.AddRange(firstHalfTossups);
-            this.Tossups.AddRange(secondHalfTossups);
+            this.Tossups.AddRange(firstQuarterTossups);
+            this.Tossups.AddRange(secondQuarterTossups);
+            this.Tossups.AddRange(thirdQuarterTossups);
+            this.Tossups.AddRange(fourthQuarterTossups);
 
             this.Bonuses = new List<Question>();
-            this.Bonuses.AddRange(firstHalfBonuses);
-            this.Bonuses.AddRange(secondHalfBonuses);
+            this.Bonuses.AddRange(firstQuarterBonuses);
+            this.Bonuses.AddRange(secondQuarterBonuses);
+            this.Bonuses.AddRange(thirdQuarterBonuses);
+            this.Bonuses.AddRange(fourthQuarterBonuses);
+        }
+
+        public Question GetQuestionFromList(List<Question> questions, Random random)
+        {
+            Question foundQuestion = questions[random.Next(questions.Count)];
+            questions.Remove(foundQuestion);
+            return foundQuestion;
         }
 
         public Question GetQuestionInParentCategory(List<Question> questions, string category, Random random)
